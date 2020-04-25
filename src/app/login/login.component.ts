@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../services/service.index';
 import { Usuario } from '../models/usuario.model';
 import swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 
 declare function init_plugins();
@@ -18,10 +19,14 @@ export class LoginComponent implements OnInit {
   email: string;
   recordar: boolean = false;
 
-  constructor(public router: Router, public usuarioService: UsuarioService) { }
+  constructor(public router: Router, public usuarioService: UsuarioService) {
+    
+   }
+ 
 
   ngOnInit(): void {
     init_plugins();
+   
     this.email = localStorage.getItem('email') || '';
     if (this.email.length > 0) {
       this.recordar = true;
@@ -34,7 +39,7 @@ export class LoginComponent implements OnInit {
     }
     const usuario = new Usuario(form.value.email, form.value.password, 'usuario');
     this.usuarioService.login(usuario, form.value.recordar).subscribe(resp => {
-      if (resp) {
+      if (resp ) {
         this.router.navigate(['/home']);
       } else {
         swal.fire('Error', 'Credenciales Incorrectas', 'error');

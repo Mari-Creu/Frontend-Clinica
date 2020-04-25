@@ -10,7 +10,8 @@ export class SidebarService {
       icono: 'mdi mdi-gauge',
       submenu: [
         { titulo: 'Inicio', url: '/home' },
-        { titulo: 'Estadisticas', url: '/estadisticas' }
+        { titulo: 'Estadisticas', url: '/estadisticas' },
+        { titulo: 'Informes', url: '/informes' }
       ]
     }
   ];

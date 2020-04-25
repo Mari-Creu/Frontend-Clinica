@@ -6,13 +6,15 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ServiceModule } from '../services/service.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
     imports: [
         RouterModule,
         CommonModule,
-        ServiceModule
+        ServiceModule,
+        PipesModule
     ],
     declarations: [
         ErrorComponent,

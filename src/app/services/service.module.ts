@@ -4,6 +4,8 @@ import { HttpClientModule} from '@angular/common/http';
 
 
 import { UsuarioService, SharedService, SidebarService } from './service.index';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { UsuarioService, SharedService, SidebarService } from './service.index';
   providers: [
     UsuarioService,
     SharedService,
-    SidebarService
+    SidebarService,
+    AdminGuard,
+    AuthGuard
   ]
 })
 export class ServiceModule { }
