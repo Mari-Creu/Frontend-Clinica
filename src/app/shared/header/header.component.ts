@@ -11,13 +11,16 @@ import { Usuario } from 'src/app/models/usuario.model';
 export class HeaderComponent implements OnInit {
   usuario: Usuario;
   constructor(public usuarioService: UsuarioService) {
-    this.usuario = this.usuarioService.usuario;
 
   }
 
   ngOnInit(): void {
+    this.usuario = this.usuarioService.usuario;
   }
   logout() {
 
+  }
+  loadUser() {
+  
   }
 }

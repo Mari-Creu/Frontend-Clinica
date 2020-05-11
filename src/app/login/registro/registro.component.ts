@@ -62,8 +62,9 @@ export class RegistroComponent implements OnInit {
     let usuario = new Usuario(this.formulario.value.email, this.formulario.value.password, this.formulario.value.nombre);
     this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
       if (resp.code === 201) {
-        swal.fire('¡BIENVENIDO!', 'Ha completado con éxito el registro', 'success');
+        swal.fire('¡BIENVENIDO ' + resp.usuario.nombre + '!', ' ¡Ya eres un nuevo miembro de nuestra clínica!', 'success');
         //FALTA CAMBIAR Y HACER EL LOGIN AUTOMÁTICAMENTE PARA QUE ENTRE A HOME CON EL TOKEN
+        this.usuarioService.guardarStorage(resp.usuario.id, resp.token.token, resp.usuario);
         this.router.navigate(['/home']);
       } else {
         swal.fire('ERROR', '¡Ha ocurrido un error durante su RegistroComponent, vuelva a intentarlo!', 'error');

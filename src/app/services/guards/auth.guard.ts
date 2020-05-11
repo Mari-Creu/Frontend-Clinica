@@ -12,12 +12,16 @@ export class AuthGuard implements CanActivate {
   constructor(public usuarioService: UsuarioService, public router: Router) {
 
   }
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.usuarioService.token) {
-      return this.usuarioService.logueado();
+  canActivate() {
 
+    this.usuarioService.cargarStorage();
+    if (this.usuarioService.logueado()) {
+      return true;
     } else {
+      console.log('Bloqueado por el guard del login');
       this.router.navigate(['/login']);
+      return false;
     }
+
   }
 }

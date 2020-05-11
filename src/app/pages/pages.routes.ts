@@ -5,6 +5,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
 import { AuthGuard } from '../services/service.index';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 const pagesRoutes: Routes = [
     {
@@ -16,6 +17,10 @@ const pagesRoutes: Routes = [
             { path: 'home', component: HomeComponent, data: { titulo: 'Inicio'} },
             { path: 'estadisticas', component: EstadisticasComponent , data: { titulo: 'Estadistica'}},
             { path: 'perfil', component: PerfilComponent , data: { titulo: 'Mi Perfil'}},
+            
+
+            //MANTENIMIENTOS
+            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}},
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ]
     }

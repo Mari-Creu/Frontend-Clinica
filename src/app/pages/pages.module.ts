@@ -9,6 +9,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
     PagesComponent,
     EstadisticasComponent,
     PerfilComponent,
-    PagesComponent
+    PagesComponent,
+    PacientesComponent
   ],
   exports: [
     HomeComponent,

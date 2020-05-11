@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/service.index';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -17,12 +18,11 @@ export class PerfilComponent implements OnInit {
 
 
   constructor(public usuarioService: UsuarioService) {
-    this.usuario = this.usuarioService.usuario;
 
   }
 
   ngOnInit(): void {
-
+    this.usuario= this.usuarioService.usuario;
   }
   guardar(usuario: Usuario) {
     //COMPLETAR CON TODOS LOS CAMPOS Y ACTUALIZAR
