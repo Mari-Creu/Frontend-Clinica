@@ -2,13 +2,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input type="text" class="form-control " placeholder="Buscar paciente.." />
+                <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control " placeholder="Buscar paciente.." />
 
             </div>
         </div>
     </div>
 </div>
-<div class="row fadeIn">
+<div class="row fadeIn"  *ngIf="cargando">
     <div class="col-sm-12">
         <div class="alert alert-warning text-center">
             <strong> Cargando</strong>
@@ -19,12 +19,12 @@
         </div>
     </div>
 </div>
-<div class="row fadeIn">
+<div class="row fadeIn" *ngIf="!cargando">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 
-                <h3 class="card-title">Pacientes Registrados ( <small>123</small> )</h3>
+                <h3 class="card-title">Pacientes Registrados ( <small>{{totalPacientes}}</small> )</h3>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -36,23 +36,35 @@
                           
                         </tr>
                     </thead>
-                    <tbody>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <button class="btn btn-primary"><i class="fa fa-save"></i></button>
-                            <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                        </td>
+                    <tbody >
+                        <tr *ngFor="let paciente of pacientes">
+                            <td class="w70">
+                                <img [src]="paciente.imagen |imagen" class="img-50 img-circle" >
+                            </td>
+                            <td>{{paciente.email}}</td>
+                            <td>{{paciente.nombre}} {{paciente.apellidos}}</td>
+                            <td> <label class="label label-danger">Paciente</label></td>
+                            <td>
+                                <button class="btn btn-primary"><i class="fa fa-save"></i></button>
+                                <button (click)="borrarUsuario(paciente)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                            </td>
+                    </tr>
                     </tbody>
-                </table>   
-                <button class="btn btn-secondary">
-                    Anteriores
-                </button>             
-                <button class="btn btn-secondary">
-                    Siguientes
-                </button>             
+                </table> 
+             <div class="row">
+                <nav class="col-12 text-center" aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" [routerLink]="['/pacientes',prev_page]">Anterior</a></li>
+                      <li class="page-item" *ngFor="let num of number_pages">
+                          <a class="page-link" [routerLink]="['/pacientes',num]">{{num}}</a>
+                        </li>
+                      
+                      <li class="page-item"><a class="page-link" [routerLink]="['/pacientes',next_page]">Siguiente</a></li>
+                    </ul>
+                  </nav>
+             </div>   
+               
+         
             </div>
         </div>
     </div>

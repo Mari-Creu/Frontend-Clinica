@@ -25,7 +25,7 @@ export class UsuarioService {
     // this.getUsuarioById(JSON.parse(localStorage.getItem('id')));
 
   }
-  getUsuario(){
+  getUsuario() {
     let usuario = JSON.parse(localStorage.getItem('usuario'));
     if (usuario && usuario !== 'undefined') {
       this.usuario = usuario;
@@ -151,5 +151,22 @@ export class UsuarioService {
     localStorage.removeItem('usuario');
     this.router.navigate(['/login']);
   }
+  cargarUsuarios(page: any, rol): Observable<any> {
+    if (!page || page === null) {
+      page = 1;
+    }
+    let params = 'rol=' + rol.toString();
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.token);
+    const url = URL_SERVICIOS + '/list?page=' + page;
+    return this.http.post(url, params, { headers: headers });
+  }
+  buscarUsuario(termino: string) { }
 
+  borrarUsuario(id) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.token);
+    const url = URL_SERVICIOS + '/deleteUser/' + id;
+    return this.http.delete(url, { headers: headers });
+  }
 }

@@ -21,6 +21,7 @@ const pagesRoutes: Routes = [
 
             //MANTENIMIENTOS
             { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}},
+            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}},
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ]
     }
