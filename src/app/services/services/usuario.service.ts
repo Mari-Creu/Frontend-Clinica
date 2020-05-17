@@ -151,17 +151,22 @@ export class UsuarioService {
     localStorage.removeItem('usuario');
     this.router.navigate(['/login']);
   }
-  cargarUsuarios(page: any, rol): Observable<any> {
+  cargarUsuarios(page: any, rol, termino?: string): Observable<any> {
     if (!page || page === null) {
       page = 1;
     }
-    let params = 'rol=' + rol.toString();
+    let params= { 'rol': rol.toString(), 'termino': termino};
+    console.log(params);
+    
+    // let params = 'rol=' + rol.toString();
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', this.token);
     const url = URL_SERVICIOS + '/list?page=' + page;
     return this.http.post(url, params, { headers: headers });
   }
-  buscarUsuario(termino: string) { }
+  buscarUsuario(termino: string, rol: string) {
+
+  }
 
   borrarUsuario(id) {
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')

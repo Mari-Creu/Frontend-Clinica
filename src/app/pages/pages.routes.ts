@@ -4,8 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
-import { AuthGuard } from '../services/service.index';
+import { AuthGuard, AdminGuard } from '../services/service.index';
 import { PacientesComponent } from './pacientes/pacientes.component';
+import { MedicosComponent } from './medicos/medicos.component';
 
 const pagesRoutes: Routes = [
     {
@@ -22,6 +23,8 @@ const pagesRoutes: Routes = [
             //MANTENIMIENTOS
             { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}},
             { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}},
+            // { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos'}},
+            // { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos'}},
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ]
     }

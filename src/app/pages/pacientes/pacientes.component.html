@@ -2,8 +2,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control " placeholder="Buscar paciente.." />
-
+                <div class="row">
+                    <div class="col-6">
+                        <input #input (keyup)="buscarUsuario(input.value)" type="text" class="form-control " placeholder="Buscar paciente.." />
+    
+                    </div>
+                    <div class="col-6">
+                        <button  class="btn btn-primary"><i class="fa fa-user-plus"></i><span > Añadir Paciente</span></button>
+                    </div>
+                </div>
+               
             </div>
         </div>
     </div>
@@ -45,7 +53,7 @@
                             <td>{{paciente.nombre}} {{paciente.apellidos}}</td>
                             <td> <label class="label label-danger">Paciente</label></td>
                             <td>
-                                <button class="btn btn-primary"><i class="fa fa-save"></i></button>
+                                <button (click)="editarPaciente(paciente)" class="btn btn-primary"><i class="fa fa-eye"></i></button>
                                 <button (click)="borrarUsuario(paciente)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                             </td>
                     </tr>
@@ -54,11 +62,10 @@
              <div class="row">
                 <nav class="col-12 text-center" aria-label="Page navigation example">
                     <ul class="pagination">
-                      <li class="page-item"><a class="page-link" [routerLink]="['/pacientes',prev_page]">Anterior</a></li>
-                      <li class="page-item" *ngFor="let num of number_pages">
-                          <a class="page-link" [routerLink]="['/pacientes',num]">{{num}}</a>
+                      <li class="page-item "><a class="page-link" routerLinkActive="active" [routerLink]="['/pacientes',prev_page]">Anterior</a></li>
+                      <li class="page-item " *ngFor="let num of number_pages" routerLinkActive="active">
+                          <a class="page-link"  [routerLink]="['/pacientes',num]">{{num}}</a>
                         </li>
-                      
                       <li class="page-item"><a class="page-link" [routerLink]="['/pacientes',next_page]">Siguiente</a></li>
                     </ul>
                   </nav>
@@ -69,3 +76,5 @@
         </div>
     </div>
 </div>
+<!-- <app-modal-usuario></app-modal-usuario> -->
+<app-modal-paciente-nuevo></app-modal-paciente-nuevo>

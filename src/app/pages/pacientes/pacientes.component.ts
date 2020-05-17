@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
-import { UsuarioService } from 'src/app/services/service.index';
+import { UsuarioService, ModalUploadService } from 'src/app/services/service.index';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -19,17 +19,18 @@ export class PacientesComponent implements OnInit {
   public number_pages;
   public totalPacientes = 0;
   public cargando: boolean = true;
-  constructor(public usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router) { }
+  public termino: string = null;
+  constructor(public usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router, public modalUploadService: ModalUploadService) { }
 
   ngOnInit(): void {
-   this.actualPageUsuarios();
+    this.actualPageUsuarios();
   }
 
 
 
   cargarUsuarios(page) {
     this.cargando = true;
-    this.usuarioService.cargarUsuarios(page, 1)
+    this.usuarioService.cargarUsuarios(page, 1, this.termino)
       .subscribe((resp: any) => {
         // tslint:disable-next-line: forin
         this.pacientes = resp.usuarios;
@@ -39,7 +40,6 @@ export class PacientesComponent implements OnInit {
           numberPages.push(i);
         }
         this.number_pages = numberPages;
-        console.log(this.pacientes);
         if (page >= 2) {
           this.prev_page = page - 1;
         } else {
@@ -56,9 +56,11 @@ export class PacientesComponent implements OnInit {
       });
   }
   buscarUsuario(termino: string) {
+    this.termino = termino;
+    this.cargarUsuarios(1);
 
   }
-  actualPageUsuarios(){
+  actualPageUsuarios() {
     this.route.params.subscribe(params => {
       var page = +params['page'];
       if (!page) {
@@ -94,7 +96,7 @@ export class PacientesComponent implements OnInit {
               'success'
             );
             this.actualPageUsuarios();
-          }else{
+          } else {
             Swal.fire(
               'Error!',
               'El usuario no ha podido ser borrado',
@@ -106,5 +108,11 @@ export class PacientesComponent implements OnInit {
       }
     });
 
+  }
+  editarPaciente(paciente: Usuario) {
+    this.modalUploadService.mostrarModal(paciente);
+  }
+  abrirModal(){
+    this.modalUploadService.mostrarModal(null);
   }
 }
