@@ -21,10 +21,10 @@ const pagesRoutes: Routes = [
             
 
             //MANTENIMIENTOS
-            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}},
-            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}},
-            // { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos'}},
-            // { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos'}},
+            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}, canActivate: [AdminGuard]},
+            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}, canActivate: [AdminGuard]},
+            { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
+            { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
             { path: '', redirectTo: '/login', pathMatch: 'full' }
         ]
     }

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     init_plugins();
-
     this.email = localStorage.getItem('email') || '';
     if (this.email.length > 0) {
       this.recordar = true;

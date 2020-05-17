@@ -149,6 +149,7 @@ export class UsuarioService {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+   localStorage.clear();
     this.router.navigate(['/login']);
   }
   cargarUsuarios(page: any, rol, termino?: string): Observable<any> {
