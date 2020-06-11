@@ -11,7 +11,9 @@ import { PacienteService } from 'src/app/services/services/paciente.service';
 })
 export class ModalPacienteNuevoComponent implements OnInit {
   contrasenyaGenerada: string = '';
-  formulario: NgForm = null;
+ // formulario: NgForm ;
+  aceptar: boolean = true;
+  recordar: boolean = false;
   constructor(public usuarioService: UsuarioService,
     public pacienteService: PacienteService,
     public modalUploadService: ModalUploadService) { }
@@ -21,11 +23,11 @@ export class ModalPacienteNuevoComponent implements OnInit {
   }
 
   cerrarModal() {
-    this.formulario = null;
+  //  this.formulario = null;
     this.modalUploadService.ocultarModal();
   }
   crearPaciente(form: NgForm) {
-    this.formulario = form;
+  //  this.formulario = form;
     if (form.invalid) {
       Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
       form.resetForm();
@@ -33,7 +35,9 @@ export class ModalPacienteNuevoComponent implements OnInit {
       return;
     }
     if (this.contrasenyaGenerada != '') {
-      const usuario = new Usuario(form.value.email, this.contrasenyaGenerada, '', '', 1);
+
+      //CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
+      const usuario = new Usuario(form.value.email, 'test', '', '', 1);
 
       this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
 

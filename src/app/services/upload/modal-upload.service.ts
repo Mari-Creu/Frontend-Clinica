@@ -8,6 +8,7 @@ export class ModalUploadService {
    public usuario: Usuario=null;
 
   public oculto: string = 'oculto';
+  public ocultoMedico: string = 'oculto';
 
   public notificacion = new EventEmitter<any>();
 
@@ -21,5 +22,13 @@ export class ModalUploadService {
   mostrarModal(paciente: Usuario) {
     // this.usuario = paciente;
     this.oculto = '';
+  }
+  ocultarModalMedico() {
+    // this.usuario = null;
+    this.ocultoMedico = 'oculto';
+  }
+  mostrarModalMedico() {
+    // this.usuario = paciente;
+    this.ocultoMedico = '';
   }
 }

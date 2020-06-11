@@ -25,6 +25,7 @@
     "rxjs": "~6.5.4",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",
+    "tsuml": "0.0.1-alpha.8",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

@@ -1,0 +1,72 @@
+<div class="row" [ngClass]="modalUploadService.ocultoMedico">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              <form ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="crearMedico(form)">
+                  
+                <div class="form-group m-t-40 row">
+
+          
+          <div class="col-9 col-xs-12"> 
+                    <input ngModel name="email" class="form-control " type="text"  placeholder=" Introduzca el email..."  required /> 
+
+                </div> 
+                <div class=" col-3 col-xs-12 "> 
+                    <button  (click)="generarContrasenya(form)" class="btn btn-primary btn-sm  btn-rounded" type="button">Generar contraseña</button> 
+
+                </div> 
+                 
+            
+            </div> 
+            <div class="row">
+              <div class=" col-6 col-xs-12 form-group"  *ngIf="contrasenyaGenerada" > 
+               
+                  <span>Contraseña Generada   <h2><strong><span>{{ contrasenyaGenerada }}</span></strong></h2> </span>
+
+                 
+            </div> 
+            <div class=" col-6 col-xs-12 form-group">
+              <select ngModel class="form-control" name="especialidad">
+                <option disabled selected>Seleccionar una especialidad</option>
+                <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">{{especialidad.especialidad}}</option>
+            </select>
+            </div>
+            <div class=" col-6 col-xs-12 form-group">
+              <select  ngModel class="col-3 form-control" name="horaInicio" (change)="cambiarHoras($event)" >
+                <!-- <option selected>Desde</option> -->
+                <option *ngFor="let hora of horas" [value]="hora.hora">{{hora.hora}}</option>
+            </select>
+            <select ngModel class=" col-3 form-control" name="horaFin">
+              <option>Hasta</option>
+              <option *ngFor="let hora of horasFin" [value]="hora.hora">{{hora.hora}}</option>
+          </select>
+            </div>
+            <div class="form-group">
+              
+                <button type="button" class="btn btn-rounded" (click)="seleccionarDia(1)"  [ngClass]="getColor(1)" >Lunes</button>
+                <button type="button" class="btn btn-rounded" (click)="seleccionarDia(2)"  [ngClass]="getColor(2)" >Martes</button>
+                <button type="button" class="btn btn-rounded" (click)="seleccionarDia(3)"  [ngClass]="getColor(3)" >Miércoles</button>
+                <button type="button" class="btn btn-rounded" (click)="seleccionarDia(4)"  [ngClass]="getColor(4)" >Jueves</button>
+                <button type="button" class="btn btn-rounded" (click)="seleccionarDia(5)"  [ngClass]="getColor(5)" >Viernes</button>
+             
+              
+            </div>
+            </div>
+           
+             
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button *ngIf="contrasenyaGenerada"  class="btn btn-primary btn-lg  text-uppercase btn-rounded" type="submit">Registrar Médico</button>
+                    </div>
+                </div>
+               
+               
+            </form>
+            <div >
+              <!-- <button [disabled]="!imagenTemporal" type="button" class="btn btn-primary">Guardar Cambios</button> -->  
+                  <button type="button" class="btn btn-secondary float-right" (click)="cerrarModal()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

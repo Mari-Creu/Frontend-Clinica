@@ -1,0 +1,46 @@
+<div class="row" [ngClass]="modalUploadService.oculto">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+              <form ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="crearPaciente(form)">
+
+                <div class="form-group m-t-40 row">
+    
+    
+                  <div class="col-8 col-xs-12">
+                    <input ngModel name="email" class="form-control " type="text" placeholder=" Introduzca el email..."
+                      required />
+    
+                  </div>
+                  <div class=" col-2 col-xs-12 ">
+                    <button (click)="generarContrasenya(form)" class="btn btn-primary btn-sm  btn-rounded"
+                      type="button">Generar contraseña</button>
+    
+                  </div>
+                </div>
+    
+                <div class="form-group row">
+    
+                  <div class=" col-12 col-xs-12">
+                    <h2><strong><label *ngIf="contrasenyaGenerada">{{ contrasenyaGenerada }}</label></strong></h2>
+                  </div>
+                </div>
+    
+                <div class="form-group text-center m-t-20">
+                  <div class="col-xs-12">
+                    <button *ngIf="contrasenyaGenerada" class="btn btn-primary btn-lg  text-uppercase btn-rounded"
+                      type="submit">Registrar Paciente</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox ">
+                    <input name="recordar" id="checkbox-signup" type="checkbox">
+                    <label for="checkbox-signup"> Recordar mis credenciales </label>
+                  </div>
+                </div>
+    
+              </form>
+            </div>
+        </div>
+    </div>
+</div>

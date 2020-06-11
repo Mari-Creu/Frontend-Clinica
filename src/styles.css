@@ -22,6 +22,9 @@
 .oculto{
     display: none;
 }
+.ocultoMedico{
+    display: none;
+}
 .bg-rosa{
     background-color: rgb(138, 63, 222);
 }

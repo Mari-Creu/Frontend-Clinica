@@ -10,9 +10,10 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PacientesComponent } from './pacientes/pacientes.component';
-import { ModalUsuarioComponent } from './modal-usuario/modal-usuario.component';
-import { ModalPacienteNuevoComponent } from './modal-paciente-nuevo/modal-paciente-nuevo.component';
+import { ModalUsuarioComponent } from './modales/modal-usuario/modal-usuario.component';
+import { ModalPacienteNuevoComponent } from './modales/modal-paciente-nuevo/modal-paciente-nuevo.component';
 import { MedicosComponent } from './medicos/medicos.component';
+import { ModalMedicoNuevoComponent } from './modales/modal-medico-nuevo/modal-medico-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MedicosComponent } from './medicos/medicos.component';
     ModalUsuarioComponent,
     ModalPacienteNuevoComponent,
     MedicosComponent,
+    ModalMedicoNuevoComponent,
   ],
   exports: [
     HomeComponent,
