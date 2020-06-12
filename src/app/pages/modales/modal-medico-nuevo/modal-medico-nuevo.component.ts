@@ -6,6 +6,10 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { Especialidad } from 'src/app/models/especialidad.model';
 import { Observable } from 'rxjs';
 import { Horario } from 'src/app/models/horario.model';
+import { HorarioService } from 'src/app/services/services/horario.service';
+import { Medico } from 'src/app/models/medico.model';
+import { MedicoService } from 'src/app/services/services/medico.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal-medico-nuevo',
@@ -77,6 +81,8 @@ export class ModalMedicoNuevoComponent implements OnInit {
 
   constructor(public usuarioService: UsuarioService,
     public especialidadService: EspecialidadService,
+    public horarioService: HorarioService,
+    public medicoService: MedicoService,
     public modalUploadService: ModalUploadService) {
 
   }
@@ -88,42 +94,46 @@ export class ModalMedicoNuevoComponent implements OnInit {
   }
   crearMedico(form: NgForm) {
     console.log(form);
+    
+    let idHorario = this.crearHorario(form.form.value.horaInicio, form.form.value.horaFin);
+   
 
-    this.crearHorario(form.form.value.horaInicio, form.form.value.horaFin);
-    //  this.formulario = form;
-    // if (form.invalid) {
-    // Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
-    // form.resetForm();
-    // this.cerrarModal();
-    // return;
-    // }
-    // if (this.contrasenyaGenerada !== '') {
 
-    // CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
-    // const usuario = new Usuario(form.value.email, 'test', '', '', 3);
+    // this.formulario = form;
+    if (form.invalid) {
+      Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
+      form.resetForm();
+      this.cerrarModal();
+      return;
+    }
+    if (this.contrasenyaGenerada !== '') {
+      // CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
+      const usuario = new Usuario(form.value.email, 'test', '', '', 3);
+      let especialidad= form.value.especialidad;
+      this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
+        if (resp.code === 201) {
+          Swal.fire('¡Registrado ' + form.value.email + '!', ' Recomendamos cambiar la contraseña en el primer acceso a su área personal ', 'success');
+          console.log(resp);
+          this.contrasenyaGenerada = '';
+          
+          form.resetForm();
+          this.cerrarModal();
+          let medico = new Medico(resp.usuario, especialidad);
+          this.medicoService.crearMedico(medico, idHorario, this.dias);
+         
+        } else {
+          Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');
+          this.contrasenyaGenerada = '';
+          form.resetForm();
+          this.cerrarModal();
 
-    // this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
-
-    // if (resp.code === 201) {
-    // Swal.fire('¡Registrado ' + form.value.email + '!', ' Recomendamos cambiar la contraseña en el primer acceso a su área personal ', 'success');
-    // console.log(resp);
-    // this.contrasenyaGenerada = '';
-    // form.resetForm();
-    // this.cerrarModal();
-
-    // } else {
-    // Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');
-    // this.contrasenyaGenerada = '';
-    // form.resetForm();
-    // this.cerrarModal();
-    // }
-
-    // }));
-    // } else {
-    // form.resetForm();
-    // this.cerrarModal();
-    // Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
-    // }
+        }
+      }));
+    } else {
+      form.resetForm();
+      this.cerrarModal();
+      Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
+    }
   }
   generarContrasenya(f: NgForm) {
     const caracteres = 'abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ12346789';
@@ -161,13 +171,16 @@ export class ModalMedicoNuevoComponent implements OnInit {
     }
   }
   crearHorario(horaInicio, horaFinal) {
-    let horaIni:any  = this.horas.filter((num: any) => num.hora == horaInicio);
-    let horaFin = this.horasFin.filter((num: any) => num.hora == horaFinal);
+    let horaIni: any = this.horas.filter((num: any) => num.hora === horaInicio);
+    let horaFin = this.horasFin.filter((num: any) => num.hora === horaFinal);
 
-    // this.dias['horaInicio']
-    console.log(horaIni[0].key);
-    console.log(horaFin[0].hora);
-    
-    // let horario = new Horario(horaIni['key'], horaFin['key']);
+
+
+    let horario = new Horario(horaIni[0].key, horaFin[0].key);
+
+    let idHorario = this.horarioService.crearHorario(horario);
+    return idHorario;
+
+
   }
 }
