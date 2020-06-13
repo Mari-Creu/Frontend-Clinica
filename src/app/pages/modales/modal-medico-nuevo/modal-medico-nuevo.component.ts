@@ -207,6 +207,6 @@ export class ModalMedicoNuevoComponent implements OnInit {
 
   }
   completarMedico(medico: Medico) {
-    this.medicoService.actualizarDatosMedico(medico);
+    this.medicoService.actualizarDatosMedico();
   }
 }

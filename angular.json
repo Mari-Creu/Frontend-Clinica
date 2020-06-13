@@ -24,6 +24,8 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/plugins/bootstrap/js/bootstrap.min.js",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.scss",
               "src/styles.css"
             ],
             "scripts": []

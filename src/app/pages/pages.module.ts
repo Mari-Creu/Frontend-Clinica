@@ -16,6 +16,9 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { ModalMedicoNuevoComponent } from './modales/modal-medico-nuevo/modal-medico-nuevo.component';
 import { CrearMedicoComponent } from './medicos/crear-medico/crear-medico.component';
 import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.component';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HorariosComponent } from './medicos/horarios/horarios.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.compon
     ModalMedicoNuevoComponent,
     CrearMedicoComponent,
     DatosMedicoComponent,
+    HorariosComponent,
   ],
   exports: [
     HomeComponent,
@@ -43,6 +47,8 @@ import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.compon
     PAGES_ROUTES,
     FormsModule,
     CommonModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
    
   ]
 })

@@ -31,12 +31,13 @@ export class MedicoService {
 
 
   }
-  actualizarDatosMedico(medico: Medico) {
+  actualizarDatosMedico(medico?) {
+    this.medico=medico;
     const url = URL_SERVICIOS + '/updateMedico';
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization', this.usuarioService.token);
-    this.http.post(url, medico, { headers: headers }).subscribe((resp: any) => {
+    this.http.post(url, this.medico, { headers: headers }).subscribe((resp: any) => {
 
       console.log(resp);
 

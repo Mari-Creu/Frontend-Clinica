@@ -8,38 +8,38 @@
                     (ngSubmit)="completarMedico(form)">
 
                     <div class="form-group m-t-40 row">
-                        <div class=" col-6 col-xs-12 form-group">
+                        <div class=" col-4 col-xs-12 form-group">
+                            <label for="especialidad">Seleccione una especialidad</label>
                             <select ngModel class="form-control" name="especialidad">
-                                <option disabled selected>Seleccionar una especialidad</option>
                                 <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
                                     {{especialidad.especialidad}}</option>
                             </select>
 
                         </div>
-                    </div>
+                        <div class=" col-4 col-xs-12 form-group">
 
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <div class='input-group date' id='datetimepicker1'>
-                                    <input type="text" id="fecha" name="fecha" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
+                            <label for="fechaContratacion">Fecha de contratación</label>
+                            <input id="fechaContratacion" name="fechaContratacion" ngModel type="text" bsDatepicker
+                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default' }"
+                                class="form-control">
+
                         </div>
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker1').datetimepicker();
-                            });
-                        </script>
+                        <div class=" col-4 col-xs-12 form-group">
+
+                            <label for="fechaFinContrato">Fecha fin de contrato</label>
+                            <input id="fechaFinContrato" name="fechaFinContrato" ngModel type="text" bsDatepicker
+                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default' }"
+                                class="form-control">
+
+                        </div>
+
                     </div>
-                    <!-- <div class="form-group m-t-40 row"> -->
-                        <!-- <input [matDatepicker]="fechaContrato" ngModel class="form-control" name="fechaContrato"> -->
-                        <!-- <mat-datepicker-toggle [for]="fechaContrato"></mat-datepicker-toggle> -->
-                        <!-- <mat-datepicker #fechaContrato></mat-datepicker> -->
-                    <!-- </div> -->
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <button class="btn btn-primary btn-lg  text-uppercase btn-rounded"
+                                type="submit">Guardar Información</button>
+                        </div>
+                    </div>
                 </form>
 
             </div>

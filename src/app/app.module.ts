@@ -9,9 +9,7 @@ import { PagesModule } from './pages/pages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './login/registro/registro.component';
 import { ServiceModule } from './services/service.module';
-// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-// import { MatDatepickerModule,
-//   MatNativeDateModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -27,9 +25,6 @@ import { ServiceModule } from './services/service.module';
     ServiceModule,
     FormsModule,
     ReactiveFormsModule,
-    // NoopAnimationsModule,
-    // MatDatepickerModule,
-    // MatNativeDateModule
 
   ],
   providers: [],
