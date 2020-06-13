@@ -1,22 +1,51 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Medico } from 'src/app/models/medico.model';
+import { Dia } from 'src/app/models/dia.model';
+import { UsuarioService } from '../service.index';
+import { URL_SERVICIOS } from 'src/app/config/config';
+import { Usuario } from 'src/app/models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicoService {
-
-  constructor(public http: HttpClient) {
+  public medico: Medico;
+  constructor(public http: HttpClient, public usuarioService: UsuarioService) {
   }
 
 
-  crearMedico(medico: Medico, idHorario:any,dias:number[]) {
-      console.log(medico);
-      console.log(idHorario);
-      console.log(dias);
-      
-      
-      
+  relacionarMedicoHorario(idMedico: string, idHorario: any, dias: number[]) {
+
+    dias.forEach(dia => {
+      let relMedicoHorario = new Dia(dia, idMedico, idHorario);
+      let url = URL_SERVICIOS + '/createDia';
+      let headers = new HttpHeaders().set('Content-Type', 'application/json')
+        .set('Authorization', this.usuarioService.token);
+      this.http.post(url, relMedicoHorario, { headers: headers }).subscribe((resp: any) => {
+
+        console.log(resp);
+
+      });
+    })
+
+
   }
+  actualizarDatosMedico(medico: Medico) {
+    const url = URL_SERVICIOS + '/updateMedico';
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+    this.http.post(url, medico, { headers: headers }).subscribe((resp: any) => {
+
+      console.log(resp);
+
+    });
+  }
+  registrarMedico(usuario: Usuario){
+    this.medico = new Medico(usuario);
+    console.log(this.medico);
+    
+  }
+
 }

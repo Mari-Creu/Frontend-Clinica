@@ -14,6 +14,8 @@ import { ModalUsuarioComponent } from './modales/modal-usuario/modal-usuario.com
 import { ModalPacienteNuevoComponent } from './modales/modal-paciente-nuevo/modal-paciente-nuevo.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { ModalMedicoNuevoComponent } from './modales/modal-medico-nuevo/modal-medico-nuevo.component';
+import { CrearMedicoComponent } from './medicos/crear-medico/crear-medico.component';
+import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ModalMedicoNuevoComponent } from './modales/modal-medico-nuevo/modal-me
     ModalPacienteNuevoComponent,
     MedicosComponent,
     ModalMedicoNuevoComponent,
+    CrearMedicoComponent,
+    DatosMedicoComponent,
   ],
   exports: [
     HomeComponent,
@@ -38,7 +42,8 @@ import { ModalMedicoNuevoComponent } from './modales/modal-medico-nuevo/modal-me
     PipesModule,
     PAGES_ROUTES,
     FormsModule,
-    CommonModule
+    CommonModule,
+   
   ]
 })
 

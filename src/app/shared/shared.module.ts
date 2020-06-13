@@ -20,7 +20,7 @@ import { PipesModule } from '../pipes/pipes.module';
         ErrorComponent,
         HeaderComponent,
         SidebarComponent,
-        BreadcrumbsComponent
+        BreadcrumbsComponent,
     ],
     exports: [
         ErrorComponent,

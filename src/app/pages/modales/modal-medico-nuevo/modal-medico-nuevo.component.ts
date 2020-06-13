@@ -23,7 +23,12 @@ export class ModalMedicoNuevoComponent implements OnInit {
   aceptar: boolean = true;
   recordar: boolean = false;
   especialidades: Array<Especialidad> = [];
+  idHorario;
   dias = [];
+  especialidad;
+  horaIni;
+  horaFin;
+
   horas = [{ key: 1, hora: '10:00' },
   { key: 2, hora: '10:30' },
   { key: 3, hora: '11:00' },
@@ -75,7 +80,6 @@ export class ModalMedicoNuevoComponent implements OnInit {
         this.especialidades.push(new Especialidad(res.id, res.nombre));
       });
     });
-    console.log(this.especialidades);
 
   }
 
@@ -92,11 +96,11 @@ export class ModalMedicoNuevoComponent implements OnInit {
     //  this.formulario = null;
     this.modalUploadService.ocultarModalMedico();
   }
-  crearMedico(form: NgForm) {
-    console.log(form);
-    
-    let idHorario = this.crearHorario(form.form.value.horaInicio, form.form.value.horaFin);
-   
+  async crearMedico(form: NgForm) {
+    let horaIni = form.value.horaInicio;
+    let horaFin = form.value.horaFin;
+    let idMedico;
+
 
 
     // this.formulario = form;
@@ -109,18 +113,22 @@ export class ModalMedicoNuevoComponent implements OnInit {
     if (this.contrasenyaGenerada !== '') {
       // CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
       const usuario = new Usuario(form.value.email, 'test', '', '', 3);
-      let especialidad= form.value.especialidad;
-      this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
+      let especialidad = form.value.especialidad;
+
+      this.usuarioService.crearUsuario(usuario).subscribe((async (resp: any) => {
         if (resp.code === 201) {
           Swal.fire('¡Registrado ' + form.value.email + '!', ' Recomendamos cambiar la contraseña en el primer acceso a su área personal ', 'success');
-          console.log(resp);
           this.contrasenyaGenerada = '';
-          
+
           form.resetForm();
           this.cerrarModal();
-          let medico = new Medico(resp.usuario, especialidad);
-          this.medicoService.crearMedico(medico, idHorario, this.dias);
-         
+
+          let medico= new Medico(resp.usuario, especialidad);
+          this.completarMedico(medico);
+
+
+
+
         } else {
           Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');
           this.contrasenyaGenerada = '';
@@ -134,6 +142,17 @@ export class ModalMedicoNuevoComponent implements OnInit {
       this.cerrarModal();
       Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
     }
+    // const data = await new Promise((resolve, reject) => {
+      // let idHorario = this.crearHorario(horaIni, horaFin);
+      // resolve(idHorario);
+
+      // if (resolve) {
+        // this.medicoService.relacionarMedicoHorario(idMedico, idHorario, this.dias);
+
+      // } else {
+        // reject('error reject');
+      // }
+    // });
   }
   generarContrasenya(f: NgForm) {
     const caracteres = 'abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ12346789';
@@ -143,7 +162,6 @@ export class ModalMedicoNuevoComponent implements OnInit {
   }
   cambiarHoras(e) {
     let horaInicio = e.target.selectedIndex + 1;
-    console.log(horaInicio);
     this.horasFin = [];
     this.horas.forEach(hora => {
       if (hora.key > horaInicio) {
@@ -160,8 +178,6 @@ export class ModalMedicoNuevoComponent implements OnInit {
     } else {
       this.dias.push(numdia);
     }
-    console.log(numdia);
-    console.log(this.dias);
 
 
   }
@@ -176,11 +192,21 @@ export class ModalMedicoNuevoComponent implements OnInit {
 
 
 
+
     let horario = new Horario(horaIni[0].key, horaFin[0].key);
 
-    let idHorario = this.horarioService.crearHorario(horario);
-    return idHorario;
+    let observable = this.horarioService.crearHorario(horario).subscribe((resp: any) => {
+      console.log(resp);
+      if (resp.code === 200) {
+        this.idHorario = resp.horario[0].id;
+      } else {
+        this.idHorario = resp.horario.id;
+      }
+      return this.idHorario;
+    });
 
-
+  }
+  completarMedico(medico: Medico) {
+    this.medicoService.actualizarDatosMedico(medico);
   }
 }

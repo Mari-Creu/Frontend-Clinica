@@ -1,0 +1,48 @@
+<div class="row" *ngIf="medicoService.medico">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>Registro de información sobre el nuevo médico {{medicoService.medico.id.email}}</h2>
+
+                <form ngNativeValidate #form="ngForm" class="form-horizontal form-material"
+                    (ngSubmit)="completarMedico(form)">
+
+                    <div class="form-group m-t-40 row">
+                        <div class=" col-6 col-xs-12 form-group">
+                            <select ngModel class="form-control" name="especialidad">
+                                <option disabled selected>Seleccionar una especialidad</option>
+                                <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+                                    {{especialidad.especialidad}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type="text" id="fecha" name="fecha" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker1').datetimepicker();
+                            });
+                        </script>
+                    </div>
+                    <!-- <div class="form-group m-t-40 row"> -->
+                        <!-- <input [matDatepicker]="fechaContrato" ngModel class="form-control" name="fechaContrato"> -->
+                        <!-- <mat-datepicker-toggle [for]="fechaContrato"></mat-datepicker-toggle> -->
+                        <!-- <mat-datepicker #fechaContrato></mat-datepicker> -->
+                    <!-- </div> -->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

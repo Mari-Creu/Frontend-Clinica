@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                Nuevo Médico
+
+                <form ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="crearMedico(form)">
+                    <div class="form-group m-t-40 row">
+                        <div class="col-9 col-xs-12">
+                            <input ngModel name="email" class="form-control " type="text"
+                                placeholder=" Introduzca el email..." required />
+                        </div>
+                        <div class=" col-3 col-xs-12 ">
+                            <button (click)="generarContrasenya()" class="btn btn-primary btn-sm  btn-rounded"
+                                type="button">Generar contraseña</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-6 col-xs-12 form-group" *ngIf="contrasenyaGenerada">
+
+                            <span>Contraseña Generada <h2><strong><span>{{ contrasenyaGenerada }}</span></strong></h2>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <button *ngIf="contrasenyaGenerada"  class="btn btn-primary btn-lg  text-uppercase btn-rounded" type="submit">Registrar Médico</button>
+                        </div>
+                    </div>
+                </form>
+
+                <app-datos-medico></app-datos-medico>
+
+
+            </div>
+        </div>
+    </div>

@@ -113,7 +113,6 @@ export class MedicosComponent implements OnInit {
   }
   abrirModal() {
     this.modalUploadService.mostrarModalMedico();
-    console.log('estoy en medicos.component abriendo el modal');
     
   }
 }
