@@ -19,6 +19,10 @@ import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.compon
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HorariosComponent } from './medicos/horarios/horarios.component';
+import { InformesComponent } from './informes/informes.component';
+import { CitasComponent } from './citas/citas.component';
+import { FullCalendarModule} from '@fullcalendar/angular';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { HorariosComponent } from './medicos/horarios/horarios.component';
     CrearMedicoComponent,
     DatosMedicoComponent,
     HorariosComponent,
+    InformesComponent,
+    CitasComponent,
   ],
   exports: [
     HomeComponent,
@@ -48,8 +54,8 @@ import { HorariosComponent } from './medicos/horarios/horarios.component';
     FormsModule,
     CommonModule,
     BrowserAnimationsModule,
+    FullCalendarModule,
     BsDatepickerModule.forRoot()
-   
   ]
 })
 

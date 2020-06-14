@@ -3,6 +3,7 @@ import { HorarioService } from 'src/app/services/services/horario.service';
 import { NgForm } from '@angular/forms';
 import { Horario } from 'src/app/models/horario.model';
 import { MedicoService } from 'src/app/services/services/medico.service';
+import { HORAS } from 'src/app/config/config';
 
 @Component({
   selector: 'app-horarios',
@@ -73,7 +74,7 @@ export class HorariosComponent implements OnInit {
   cambiarHoras(e) {
     let horaInicio = e.target.selectedIndex + 1;
     this.horasFin = [];
-    this.horas.forEach(hora => {
+    HORAS.forEach(hora => {
       if (hora.key > horaInicio) {
         this.horasFin.push(hora);
       }

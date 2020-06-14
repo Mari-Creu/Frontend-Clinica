@@ -7,3 +7,4 @@ export { SidebarService } from './shared/sidebar.service';
 export { UploadService } from './upload/upload.service';
 export { ModalUploadService } from './upload/modal-upload.service';
 export { EspecialidadService } from './services/especialidad.service';
+export { CitaService } from './services/cita.service';

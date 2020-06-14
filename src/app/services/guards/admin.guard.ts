@@ -19,6 +19,8 @@ export class AdminGuard implements CanActivate {
       return true;
     } else {
       console.log('bloqueado por el admin guard');
+      console.log(this.usuario.rol);
+      
     }
   }
 

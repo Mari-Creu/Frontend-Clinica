@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ModalUploadService } from './upload/modal-upload.service';
 import { UploadService } from './upload/upload.service';
 import { EspecialidadService } from './services/especialidad.service';
+import { CitaService } from './services/cita.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EspecialidadService } from './services/especialidad.service';
     AuthGuard,
     ModalUploadService,
     UploadService,
-    EspecialidadService
+    EspecialidadService,
+    CitaService
   ]
 })
 export class ServiceModule { }

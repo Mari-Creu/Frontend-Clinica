@@ -5,6 +5,7 @@ import { Dia } from 'src/app/models/dia.model';
 import { UsuarioService } from '../service.index';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Cita } from 'src/app/models/cita.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class MedicoService {
 
   }
   actualizarDatosMedico(medico?) {
-    this.medico=medico;
+    this.medico = medico;
     const url = URL_SERVICIOS + '/updateMedico';
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -43,10 +44,21 @@ export class MedicoService {
 
     });
   }
-  registrarMedico(usuario: Usuario){
+  registrarMedico(usuario: Usuario) {
     this.medico = new Medico(usuario);
     console.log(this.medico);
-    
+
+  }
+  consultarCitasDisponibles(dia, medico) {
+
+    const url = URL_SERVICIOS + '/consultaCitasMedico';
+
+    let params = { 'dia': dia, 'medico': medico };
+
+    // let params = 'rol=' + rol.toString();
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.post(url, params, { headers: headers });
   }
 
 }

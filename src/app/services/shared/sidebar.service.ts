@@ -12,40 +12,105 @@ export class SidebarService {
   constructor() {
   }
   cargarMenu(rol: number) {
-    if (rol === 1) {
-      this.menu = [
-        {
-          titulo: 'Principal',
-          icono: 'fa fa-star',
-          submenu: [
-            { titulo: 'Inicio', url: '/home' },
-            { titulo: 'Estadisticas', url: '/estadisticas' },
-            { titulo: 'Informes', url: '/informes' }
-          ]
-        }
-      ];
-    }else{
-      this.menu = [
-        {
-          titulo: 'Principal',
-          icono: 'fa fa-star',
-          submenu: [
-            { titulo: 'Inicio', url: '/home' },
-            { titulo: 'Estadisticas', url: '/estadisticas' },
-            { titulo: 'Informes', url: '/informes' }
-          ]
-        },
-        {
-          titulo: 'Mantenimiento',
-          icono: 'fa fa-address-card',
-          submenu: [
-            { titulo: 'Médicos', url: '/medicos' },
-            { titulo: 'Pacientes', url: '/pacientes' },
-            { titulo: 'Administradores', url: '/administradores' }
-          ]
-        }
-      ];
+    switch (rol){
+      case 1:{
+        this.menu = [
+          {
+            titulo: 'Principal',
+            icono: 'fa fa-star',
+            submenu: [
+              { titulo: 'Inicio', url: '/home' },
+              { titulo: 'Estadisticas', url: '/estadisticas' },
+              { titulo: 'Informes', url: '/informes' }
+            ]
+          }
+        ];
+        break;
+      }
+      case 3:{
+        this.menu = [
+          {
+            titulo: 'Principal',
+            icono: 'fa fa-star',
+            submenu: [
+              { titulo: 'Inicio', url: '/home' },
+              { titulo: 'Estadisticas', url: '/estadisticas' },
+              { titulo: 'Informes', url: '/informes' }
+            ]
+          },
+          {
+            titulo: 'Clínica Hache',
+            icono: 'fa fa-address-card',
+            submenu: [
+              { titulo: 'Pacientes', url: '/pacientes' },
+              { titulo: 'Próximas Citas', url: '/citasMedico' }
+              // { titulo: 'Administradores', url: '/administradores' }
+            ]
+          }
+        ];
+        break;
+      }
+      case 2:{
+        this.menu = [
+          {
+            titulo: 'Principal',
+            icono: 'fa fa-star',
+            submenu: [
+              { titulo: 'Inicio', url: '/home' },
+              { titulo: 'Estadisticas', url: '/estadisticas' },
+              { titulo: 'Informes', url: '/informes' }
+            ]
+          },
+          {
+            titulo: 'Mantenimiento',
+            icono: 'fa fa-address-card',
+            submenu: [
+              { titulo: 'Médicos', url: '/medicos' },
+              { titulo: 'Pacientes', url: '/pacientes' },
+              { titulo: 'Administradores', url: '/administradores' }
+            ]
+          }
+        ];
+      }
     }
+
+
+
+
+    // if (rol === 1) {
+    //   this.menu = [
+    //     {
+    //       titulo: 'Principal',
+    //       icono: 'fa fa-star',
+    //       submenu: [
+    //         { titulo: 'Inicio', url: '/home' },
+    //         { titulo: 'Estadisticas', url: '/estadisticas' },
+    //         { titulo: 'Informes', url: '/informes' }
+    //       ]
+    //     }
+    //   ];
+    // }else{
+    //   this.menu = [
+    //     {
+    //       titulo: 'Principal',
+    //       icono: 'fa fa-star',
+    //       submenu: [
+    //         { titulo: 'Inicio', url: '/home' },
+    //         { titulo: 'Estadisticas', url: '/estadisticas' },
+    //         { titulo: 'Informes', url: '/informes' }
+    //       ]
+    //     },
+    //     {
+    //       titulo: 'Mantenimiento',
+    //       icono: 'fa fa-address-card',
+    //       submenu: [
+    //         { titulo: 'Médicos', url: '/medicos' },
+    //         { titulo: 'Pacientes', url: '/pacientes' },
+    //         { titulo: 'Administradores', url: '/administradores' }
+    //       ]
+    //     }
+    //   ];
+    // }
 
   }
 }
