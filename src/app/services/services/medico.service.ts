@@ -6,6 +6,8 @@ import { UsuarioService } from '../service.index';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Cita } from 'src/app/models/cita.model';
+import { EspecialidadService } from './especialidad.service';
+import { Especialidad } from 'src/app/models/especialidad.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,4 +63,10 @@ export class MedicoService {
     return this.http.post(url, params, { headers: headers });
   }
 
+  buscarMedicosPorEspecialidad(especialidad: Especialidad) {
+    const url = URL_SERVICIOS + '/buscarMedicosEspecialidad';
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.post(url, especialidad, { headers: headers });
+  }
 }

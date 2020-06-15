@@ -67,7 +67,7 @@ export class RegistroComponent implements OnInit {
         this.usuarioService.guardarStorage(resp.usuario.id, resp.token.token, resp.usuario);
         this.router.navigate(['/home']);
       } else {
-        swal.fire('ERROR', '¡Ha ocurrido un error durante su RegistroComponent, vuelva a intentarlo!', 'error');
+        swal.fire('ERROR', '¡Ha ocurrido un error durante su registro, !'+resp, 'error');
       }
 
     }));

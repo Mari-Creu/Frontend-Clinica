@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { esLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
+
 import { MedicoService } from 'src/app/services/services/medico.service';
 import { UsuarioService, CitaService } from 'src/app/services/service.index';
 import { HORAS } from 'src/app/config/config';
 import { Cita } from 'src/app/models/cita.model';
+import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
+import { resetFakeAsyncZone } from '@angular/core/testing';
+import { stringify } from 'querystring';
 
 defineLocale('es', esLocale);
 
@@ -25,33 +30,69 @@ export class CitasComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   horas = [];
   minDate;
+  idPaciente;
+  bsValue = new Date();
+  public bankFilterCtrl: FormControl = new FormControl();
   // calendarPlugins = [dayGridPlugin];
 
-  constructor(public localeService: BsLocaleService, public medicoService: MedicoService, public usuarioService: UsuarioService, public citaService: CitaService) {
+  constructor(
+    public localeService: BsLocaleService,
+    public medicoService: MedicoService,
+    public usuarioService: UsuarioService,
+    public citaService: CitaService,
+    private route: ActivatedRoute) {
 
     this.localeService.use(this.locale);
     this.minDate = new Date();
-    this.minDate.setDate(this.minDate.getDate() - 1);
+    this.minDate.setDate(this.minDate.getDate() );
   }
 
   ngOnInit(): void {
     this.horas = HORAS;
+    this.route.params.subscribe(params => {
+      var id = +params['id'];
+      if (id) {
+        this.idPaciente = id;
+      }
+    });
   }
+  convertirFecha2String(fecha: any) {
+    let anyo = fecha.getFullYear();
+    let mes = fecha.getUTCMonth() + 1;
+    let dia = fecha.getDate();
+    return dia + '-' + mes + '-' + anyo;
+  }
+
 
   pedirCita(form: NgForm) {
     console.log(form);
 
-    let horaIni: any = HORAS.filter((num: any) => num.hora === form.value.horaCita);
 
-    let cita = new Cita(13, this.usuarioService.usuario.id, form.value.fechaConsulta, null, horaIni[0].key);
-    this.citaService.crearCita(cita);
+    let horaIni: any = HORAS.filter((num: any) => num.hora === form.value.horaCita);
+    console.log(horaIni);
+    
+
+    let fechaConsulta = this.convertirFecha2String(form.value.fechaConsulta);
+
+
+    let cita = new Cita(this.idPaciente, this.usuarioService.usuario.id, fechaConsulta, null, horaIni[0].key, 'motivoComsulta');
+    this.citaService.crearCita(cita).subscribe((resp: any) => {
+      if (resp.code === '201') {
+        Swal.fire(resp.cita.fechaProgramada + ' a las ' + HORAS[resp.cita.horaCita-1].hora, resp.cita.paciente.id.nombre + ' ' + resp.cita.paciente.id.apellidos, 'success');
+        form.resetForm();
+      } else {
+        Swal.fire('No se ha guardado la cita', 'Vuelva a intentarlo', 'error');
+      }
+    });
 
   }
 
   onValueChange(event) {
-    console.log(event);
     if (event !== null) {
-      this.medicoService.consultarCitasDisponibles(event, this.usuarioService.usuario.id).subscribe(
+
+      let dia = this.convertirFecha2String(event);
+
+      this.medicoService.consultarCitasDisponibles(dia, this.usuarioService.usuario.id).subscribe(
         (resp: any) => {
           let horasLibres = HORAS;
           let horasOcupadas = [];
@@ -60,22 +101,17 @@ export class CitasComponent implements OnInit {
 
           });
           console.log(horasOcupadas);
-
-          horasLibres.forEach(num => {
-            if (horasOcupadas.indexOf(num)) {
-              horasLibres = horasLibres.filter(n => {
-                return num.key !== n.key;
-              });
-            }
-            console.log(horasLibres);
-
-            this.horas = horasLibres;
-
-          }
-          );
+          horasOcupadas.forEach(horaOcupada => {
+            horasLibres = horasLibres.filter(n => {
+              return n.key !== horaOcupada;
+            });
+          });
+          console.log(horasLibres);
+          
+          this.horas = horasLibres;
         }
       );
-    // new Date(form.value.fechaContratacion)
-  }
+      // new Date(form.value.fechaContratacion)
+    }
   }
 }

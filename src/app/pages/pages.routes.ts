@@ -10,6 +10,8 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoGuard } from '../services/guards/medico.guard';
 import { InformesComponent } from './informes/informes.component';
 import { CitasComponent } from './citas/citas.component';
+import { CitasPacienteComponent } from './citas/citas-paciente/citas-paciente.component';
+import { InfoPacienteComponent } from './info-paciente/info-paciente.component';
 
 const pagesRoutes: Routes = [
     {
@@ -29,10 +31,16 @@ const pagesRoutes: Routes = [
             { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}, canActivate: [AdminGuard, MedicoGuard]},
             { path: 'informes', component: InformesComponent , data: { titulo: 'Informes'}, canActivate: [ MedicoGuard]},
             { path: 'citasMedico', component: CitasComponent , data: { titulo: 'Citas'}, canActivate: [ MedicoGuard]},
+            { path: 'citasMedico/:id', component: CitasComponent , data: { titulo: 'Citas'}, canActivate: [ MedicoGuard]},
+            // tslint:disable-next-line: max-line-length
+            { path: 'info/:id', component: InfoPacienteComponent , data: { titulo: 'Información personal del paciente'}, canActivate: [ MedicoGuard]},
             
             { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
             { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
-            { path: '', redirectTo: '/login', pathMatch: 'full' }
+            { path: '', redirectTo: '/login', pathMatch: 'full' },
+            //paciente -->hacer guard
+            { path: 'citasPaciente', component: CitasPacienteComponent , data: { titulo: 'Mis Citas'}}
+
         ]
     }
 ];

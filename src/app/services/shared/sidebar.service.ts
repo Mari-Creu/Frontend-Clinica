@@ -21,7 +21,8 @@ export class SidebarService {
             submenu: [
               { titulo: 'Inicio', url: '/home' },
               { titulo: 'Estadisticas', url: '/estadisticas' },
-              { titulo: 'Informes', url: '/informes' }
+              { titulo: 'Informes', url: '/informes' },
+              { titulo: 'Mis Citas', url: '/citasPaciente' }
             ]
           }
         ];

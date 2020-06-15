@@ -40,6 +40,8 @@
                             <th>Imagen</th>
                             <th>Email</th>
                             <th>Nombre</th>
+                            <th>Dar Cita</th>
+                            <th>Ver Información</th>
                             <th>Informe</th>
                             <th>Rol</th>
                             <th>Opciones</th>
@@ -53,7 +55,9 @@
                             </td>
                             <td>{{paciente.email}}</td>
                             <td>{{paciente.nombre}} {{paciente.apellidos}}</td>
-                            <td> <a class="btn " routerLinkActive="active" routerLink="/informes">Inicio </a></td>
+                            <td> <a class="page-link" [routerLink]="['/citasMedico',paciente.id]">Nueva Cita</a></td>
+                            <td> <a class="page-link" [routerLink]="['/info',paciente.id]">Acceder</a></td>
+                            <td> <a class="btn " routerLinkActive="active" routerLink="/informes">Informes</a></td>
                             <td> <label class="label label-danger">Paciente</label></td>
                             <td>
                                 <button (click)="editarPaciente(paciente)" class="btn btn-primary"><i class="fa fa-eye"></i></button>

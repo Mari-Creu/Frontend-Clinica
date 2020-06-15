@@ -5,16 +5,22 @@
                 <div class="box-body">
                     <form ngNativeValidate #form="ngForm" class="form-horizontal form-material"
                         (ngSubmit)="pedirCita(form)">
+                     
+
                         <div class=" col-4 col-xs-12 form-group">
 
                             <label for="fechaConsulta">Fecha de consulta</label>
                             <input id="fechaConsulta"  name="fechaConsulta"
                                 ngModel type="text" bsDatepicker
                                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}"
-                                class="form-control" (bsValueChange)="onValueChange($event)" [minDate]="minDate" >
+                                class="form-control"
+                                 (bsValueChange)="onValueChange($event)" 
+                                 [minDate]="minDate" 
+                                 [(bsValue)]="bsValue"
+                                 >
                         </div>
                         <div class=" col-4 col-xs-12 form-group">
-                        <label for="horaCita" class="mr-4">Hora Inicio: </label>
+                        <label for="horaCita" class="mr-4">Horas disponibles: </label>
                         <select ngModel id="horaCita" class="col-3 form-control text-center" name="horaCita"
                          >
                             <option *ngFor="let hora of horas" [value]="hora.hora" class="text-center">{{hora.hora}}

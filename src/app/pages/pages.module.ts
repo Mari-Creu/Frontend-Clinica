@@ -7,7 +7,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { ChartsModule } from 'ng2-charts';
 import { PipesModule } from '../pipes/pipes.module';
 import { PerfilComponent } from './perfil/perfil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { ModalUsuarioComponent } from './modales/modal-usuario/modal-usuario.component';
@@ -22,6 +22,10 @@ import { HorariosComponent } from './medicos/horarios/horarios.component';
 import { InformesComponent } from './informes/informes.component';
 import { CitasComponent } from './citas/citas.component';
 import { FullCalendarModule} from '@fullcalendar/angular';
+import { CitasPacienteComponent } from './citas/citas-paciente/citas-paciente.component';
+import { InfoPacienteComponent } from './info-paciente/info-paciente.component';
+import { NuevoInformeComponent } from './informes/nuevo-informe/nuevo-informe.component';
+
 
 
 @NgModule({
@@ -41,6 +45,9 @@ import { FullCalendarModule} from '@fullcalendar/angular';
     HorariosComponent,
     InformesComponent,
     CitasComponent,
+    CitasPacienteComponent,
+    InfoPacienteComponent,
+    NuevoInformeComponent,
   ],
   exports: [
     HomeComponent,
@@ -55,6 +62,7 @@ import { FullCalendarModule} from '@fullcalendar/angular';
     CommonModule,
     BrowserAnimationsModule,
     FullCalendarModule,
+    ReactiveFormsModule,
     BsDatepickerModule.forRoot()
   ]
 })

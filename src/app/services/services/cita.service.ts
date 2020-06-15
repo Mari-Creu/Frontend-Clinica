@@ -17,10 +17,6 @@ export class CitaService {
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization', this.usuarioService.token);
-    this.http.post(url, cita, { headers: headers }).subscribe((resp: any) => {
-
-      console.log(resp);
-
-    });
+    return this.http.post(url, cita, { headers: headers });
   }
 }
