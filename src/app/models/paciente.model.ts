@@ -6,6 +6,7 @@ export class Paciente {
         public id: Usuario,
         public seguridadSocial?: string,
         public mutua?: string,
-        public fechaNacimiento?: Date
+        public fechaNacimiento?: Date,
+        public baja?: boolean
     ) { }
 }

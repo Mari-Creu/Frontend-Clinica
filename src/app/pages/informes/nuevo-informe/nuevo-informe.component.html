@@ -1,1 +1,44 @@
-<p>nuevo-informe works!</p>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="!operacionEnTramite" class="row">
+                    <div class="col-5"></div>
+                    <div ><button *ngIf="!paciente.baja" class="btn btn-danger " (click)="darBajaAlPaciente()"> Dar Baja </button></div>
+                    <div ><button *ngIf="paciente.baja" class="btn btn-success" (click)="darBajaAlPaciente()"> Dar Alta</button></div>
+
+                    <div ><button *ngIf="!ingreso" class="btn btn-primary" (click)="buscarHabitacion()" >  Gestionar Ingreso del paciente </button></div>
+                    <div ><button class="btn btn-info" (click)="programarIntervencion()"> Programar Intervención </button></div>
+
+                </div>
+
+
+                <!-- <app-intervenciones [paciente]="paciente"></app-intervenciones> -->
+                <app-form-informe [paciente]="paciente" *ngIf="hacerInforme" (operacion)="estadoOperacion($event)"></app-form-informe>
+
+
+                <div  *ngIf="habitacion" class="row fadeIn ">
+                    <div class=" col-12 alert text-center border border-secondary" role="alert">
+                        <h4 class="alert-heading text-center">¡Habitación disponible!</h4>
+                        <p>Se puede solicitar la habitación nº <strong>{{habitacion.numero}} </strong>situada en la <strong>{{habitacion.nombrePlanta}}</strong>  para el ingreso del paciente {{paciente.id.nombre}} {{paciente.id.apellidos}}</p>
+                        <hr>
+                        <p class="mb-0 text-center"><button class="btn btn-primary text-center" (click)="ingresarPaciente()">Solicitar ingreso</button></p>
+                      </div>
+                </div>
+                <div  *ngIf="habitacionesOcupadas" class="row fadeIn">
+                    <div class=" col-12 alert alert-danger text-center" role="alert">
+                        <h4 class="alert-heading text-center">¡No hay habitaciones disponibles!</h4>
+                        <p>Habrá que derivar al paciente</p>
+                        <hr>
+                        <p class="mb-0 text-center"><button class="btn  text-center" (click)="finalizarOperacionHabitacion()">Cerrar</button></p>
+                      </div>
+                </div>
+                
+
+               
+                
+            </div>
+        </div>
+    </div>
+</div>

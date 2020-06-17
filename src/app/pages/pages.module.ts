@@ -19,12 +19,14 @@ import { DatosMedicoComponent } from './medicos/datos-medico/datos-medico.compon
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HorariosComponent } from './medicos/horarios/horarios.component';
-import { InformesComponent } from './informes/informes.component';
 import { CitasComponent } from './citas/citas.component';
 import { FullCalendarModule} from '@fullcalendar/angular';
 import { CitasPacienteComponent } from './citas/citas-paciente/citas-paciente.component';
 import { InfoPacienteComponent } from './info-paciente/info-paciente.component';
 import { NuevoInformeComponent } from './informes/nuevo-informe/nuevo-informe.component';
+import { HistorialComponent } from './informes/historial/historial.component';
+import { IntervencionesComponent } from './informes/nuevo-informe/intervenciones/intervenciones.component';
+import { FormInformeComponent } from './informes/nuevo-informe/form-informe/form-informe.component';
 
 
 
@@ -43,11 +45,13 @@ import { NuevoInformeComponent } from './informes/nuevo-informe/nuevo-informe.co
     CrearMedicoComponent,
     DatosMedicoComponent,
     HorariosComponent,
-    InformesComponent,
     CitasComponent,
     CitasPacienteComponent,
     InfoPacienteComponent,
     NuevoInformeComponent,
+    HistorialComponent,
+    IntervencionesComponent,
+    FormInformeComponent,
   ],
   exports: [
     HomeComponent,

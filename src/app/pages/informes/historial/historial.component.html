@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+
+            <div class="card-body">
+                <h4 class="card-title"> Historial Clínico</h4>
+                <div class="row text-center">
+                    <div *ngFor="let informe of historialInformes" class="jumbotron col-2  col-lg-3 col-xs-6 mx-1">
+                        <h6 class="display-4">{{informe.fechaInforme | date:'dd-MM-yyyy'}}</h6>
+                        <p class="lead">{{informe.diagnostico}}</p>
+                        <hr class="my-4">
+                        
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" (click)="openDialog()" role="button">Leer Informe</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
