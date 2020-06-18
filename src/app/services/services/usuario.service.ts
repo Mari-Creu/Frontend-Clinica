@@ -175,4 +175,12 @@ export class UsuarioService {
     const url = URL_SERVICIOS + '/deleteUser/' + id;
     return this.http.delete(url, { headers: headers });
   }
+  putUsuario(usuario:Usuario){
+    
+    const url = URL_SERVICIOS + '/putUsuario';
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.token);
+    return this.http.put(url, usuario, { headers: headers });
+  }
 }

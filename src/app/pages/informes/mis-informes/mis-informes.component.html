@@ -1,0 +1,75 @@
+<div class="row fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-secondary text-center">
+            <strong> Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span> Espere por favor</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarInforme(input.value)" type="text" class="form-control " placeholder="Buscar informe.." />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<div class="row fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Informes Realizados </h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+
+                            <th>Nombre del Paciente</th>
+                            <th>DNI</th>
+                            <th>Fecha Informe</th>
+                            <th>Ver Informe</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let informe of misInformes">
+                            <td class="w70">
+                                <img [src]="informe.paciente.id.imagen |imagen" class="img-50 img-circle">
+                            </td>
+                            <td>{{informe.paciente.id.nombre}} {{informe.paciente.id.apellidos}}
+                            </td>
+                            <td>{{informe.paciente.id.dni}}</td>
+                            <td>{{informe.fechaInforme | date:'dd-MM-yyyy'}}</td>
+                            <td>  <button (click)="verInforme(informe)" class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="row"> -->
+                <!-- <nav class="col-12 text-center" aria-label="Page navigation example"> -->
+                <!-- <ul class="pagination"> -->
+                <!-- <li class="page-item "><a class="page-link" routerLinkActive="active" [routerLink]="['/pacientes',prev_page]">Anterior</a></li> -->
+                <!-- <li class="page-item " *ngFor="let num of number_pages" routerLinkActive="active"> -->
+                <!-- <a class="page-link"  [routerLink]="['/pacientes',num]">{{num}}</a> -->
+                <!-- </li> -->
+                <!-- <li class="page-item"><a class="page-link" [routerLink]="['/pacientes',next_page]">Siguiente</a></li> -->
+                <!-- </ul> -->
+                <!-- </nav> -->
+                <!-- </div>    -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-modal-usuario></app-modal-usuario> -->

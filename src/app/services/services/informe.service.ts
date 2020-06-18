@@ -26,13 +26,33 @@ export class InformeService {
     this.newInforme = true;
   }
   getInformes(paciente: any) {
-    console.log(paciente);
-    
+
     const url = URL_SERVICIOS + '/getInformes/' + paciente.id.id;
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization', this.usuarioService.token);
 
     return this.http.get(url, { headers: headers });
+  }
+
+
+  getInformesPorMedico(id: any) {
+    const url = URL_SERVICIOS + '/getInformesPorMedico/' + id;
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+
+    return this.http.get(url, { headers: headers });
+
+  }
+  buscarInformes(term) {
+    
+    // console.log(term);
+    // const url = URL_SERVICIOS + '/buscarInformes';
+    // let params = { 'idMedico': this.usuarioService.usuario.id, 'term': term };
+    // let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      // .set('Authorization', this.usuarioService.token);
+
+    // return this.http.post(url, params, { headers: headers });
   }
 }

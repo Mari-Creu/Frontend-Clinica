@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InformeService } from 'src/app/services/service.index';
 import { Paciente } from 'src/app/models/paciente.model';
+import { Informe } from 'src/app/models/informe.model';
 
 @Component({
   selector: 'app-historial',
@@ -9,6 +10,7 @@ import { Paciente } from 'src/app/models/paciente.model';
 })
 export class HistorialComponent implements OnInit {
   historialInformes = [];
+  informe:Informe;
   @Input() paciente: Paciente;
 
   constructor(public informeService: InformeService) { }
@@ -27,5 +29,13 @@ export class HistorialComponent implements OnInit {
 
     });
   }
+ abrirModal(informe:any){
+  this.informe=informe;
+  console.log(informe);
+  
+ }
+ cerrarModal(event){
+   this.informe=null;
+ }
 
 }

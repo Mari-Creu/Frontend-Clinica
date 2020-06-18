@@ -11,7 +11,7 @@
 
                             <label for="fechaConsulta">Fecha de consulta</label>
                             <input id="fechaConsulta"  name="fechaConsulta"
-                                ngModel type="text" bsDatepicker
+                                ngModel type="text"  autocomplete="off" bsDatepicker
                                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}"
                                 class="form-control"
                                  (bsValueChange)="onValueChange($event)" 

@@ -27,6 +27,9 @@ import { NuevoInformeComponent } from './informes/nuevo-informe/nuevo-informe.co
 import { HistorialComponent } from './informes/historial/historial.component';
 import { IntervencionesComponent } from './informes/nuevo-informe/intervenciones/intervenciones.component';
 import { FormInformeComponent } from './informes/nuevo-informe/form-informe/form-informe.component';
+import { ModalInformeComponent } from './modales/modal-informe/modal-informe.component';
+import { MisInformesComponent } from './informes/mis-informes/mis-informes.component';
+
 
 
 
@@ -52,6 +55,8 @@ import { FormInformeComponent } from './informes/nuevo-informe/form-informe/form
     HistorialComponent,
     IntervencionesComponent,
     FormInformeComponent,
+    ModalInformeComponent,
+    MisInformesComponent,
   ],
   exports: [
     HomeComponent,

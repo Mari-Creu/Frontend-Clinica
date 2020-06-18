@@ -11,7 +11,7 @@ import { MedicoGuard } from '../services/guards/medico.guard';
 import { CitasComponent } from './citas/citas.component';
 import { CitasPacienteComponent } from './citas/citas-paciente/citas-paciente.component';
 import { InfoPacienteComponent } from './info-paciente/info-paciente.component';
-import { HistorialComponent } from './informes/historial/historial.component';
+import { MisInformesComponent } from './informes/mis-informes/mis-informes.component';
 
 const pagesRoutes: Routes = [
     {
@@ -20,26 +20,26 @@ const pagesRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             //data es el titulo que le pongo al breadcrumbs
-            { path: 'home', component: HomeComponent, data: { titulo: 'Inicio'} },
-            { path: 'estadisticas', component: EstadisticasComponent , data: { titulo: 'Estadistica'}},
-            { path: 'perfil', component: PerfilComponent , data: { titulo: 'Mi Perfil'}},
+            { path: 'home', component: HomeComponent, data: { titulo: 'Inicio', pages: 'Área Personal'} },
+            { path: 'estadisticas', component: EstadisticasComponent , data: { titulo: 'Estadistica', pages: 'Datos'}},
+            { path: 'perfil', component: PerfilComponent , data: { titulo: 'Mi Perfil', pages:'Área Personal'}},
             
 
             //MANTENIMIENTOS
-            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes'}, canActivate: [AdminGuard, MedicoGuard]},
+            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}, canActivate: [AdminGuard, MedicoGuard]},
             // tslint:disable-next-line: max-line-length
-            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes'}, canActivate: [AdminGuard, MedicoGuard]},
-            { path: 'informes', component: HistorialComponent , data: { titulo: 'Historial Clínico'}, canActivate: [ MedicoGuard]},
-            { path: 'citasMedico', component: CitasComponent , data: { titulo: 'Citas'}, canActivate: [ MedicoGuard]},
-            { path: 'citasMedico/:id', component: CitasComponent , data: { titulo: 'Citas'}, canActivate: [ MedicoGuard]},
+            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}, canActivate: [AdminGuard, MedicoGuard]},
+            { path: 'informes', component: MisInformesComponent , data: { titulo: 'Informes', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
+            { path: 'citasMedico', component: CitasComponent , data: { titulo: 'Citas', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
+            { path: 'citasMedico/:id', component: CitasComponent , data: { titulo: 'Citas', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
             // tslint:disable-next-line: max-line-length
-            { path: 'info/:id', component: InfoPacienteComponent , data: { titulo: 'Información personal del paciente'}, canActivate: [ MedicoGuard]},
+            { path: 'info/:id', component: InfoPacienteComponent , data: { titulo: 'Información personal del paciente', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
             
-            { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
-            { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos'}, canActivate: [AdminGuard]},
+            { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
+            { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
             { path: '', redirectTo: '/login', pathMatch: 'full' },
             //paciente -->hacer guard
-            { path: 'citasPaciente', component: CitasPacienteComponent , data: { titulo: 'Mis Citas'}}
+            { path: 'citasPaciente', component: CitasPacienteComponent , data: { titulo: 'Mis Citas', pages: 'Clínica'}}
 
         ]
     }

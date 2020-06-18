@@ -19,15 +19,6 @@
             </ul>
 
             <ul class="navbar-nav my-lg-0">
-
-                <li class="nav-item hidden-xs-down search-box"> <a
-                        class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
-                            class="ti-search"></i></a>
-                    <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
-                                class="ti-close"></i></a> </form>
-                </li>
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><img [src]="usuarioService.usuario.imagen | imagen" alt="user"
@@ -45,12 +36,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-user"></i> Mi Perfil</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a (click)="usuarioService.logout()" class="pointer"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>

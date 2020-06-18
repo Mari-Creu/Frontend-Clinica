@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class BreadcrumbsComponent implements OnInit {
   titulo: string;
+  pages: string;
 
   constructor(private router: Router,
     private title: Title
@@ -23,6 +24,7 @@ export class BreadcrumbsComponent implements OnInit {
       )
       .subscribe(data => {
         this.titulo = data.titulo;
+        // this.pages = data.pages;
         this.title.setTitle(this.titulo);
       }
       );

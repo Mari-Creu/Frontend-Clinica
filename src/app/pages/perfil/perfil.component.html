@@ -6,10 +6,24 @@
                 <h6 class="card-subtitle">{{ usuario.nombre }}</h6>
                 <form ngNativeValidate #f="ngForm" (ngSubmit)="guardar(f.value)" class="form p-t-20">
                     <div class="form-group">
-                        <label for="exampleInputuname">Usuario</label>
+                        <label for="exampleInputuname">Nombre</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
                             <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control" id="exampleInputuname" [placeholder]="usuario.nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Apellidos</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.apellidos" name="apellidos" type="text" class="form-control" id="exampleInputuname" [placeholder]="usuario.apellidos">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Teléfono</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-mobile"></i></div>
+                            <input [ngModel]="usuario.telefono" name="telefono" type="text" class="form-control" id="exampleInputuname" [placeholder]="usuario.telefono">
                         </div>
                     </div>
                     <div class="form-group">
@@ -19,45 +33,26 @@
                             <input  [ngModel]="usuario.email" name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="pwd1">Password</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-lock"></i></div>
-                            <input type="password" class="form-control" id="pwd1" placeholder="Enter email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd2">Confirm Password</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="ti-lock"></i></div>
-                            <input type="password" class="form-control" id="pwd2" placeholder="Enter email">
-                        </div>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <div class="checkbox checkbox-success">
-                            <input id="checkbox1" type="checkbox">
-                            <label for="checkbox1"> Remember me </label>
-                        </div>
-                    </div> -->
-                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"><i
-                            class="fa fa-save"></i> Submit</button>
+                   
+                    <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10 text-center"  style="margin-left: 30%;"><i
+                            class="fa fa-save" ></i>  Actualizar mis datos</button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-5">
-        <div class="card">
+        <div class="card text-center">
             <div class="card-body">
                 <h4 class="card-title">Fotografía del usuario</h4>
                 <h6 class="card-subtitle" >{{usuario.nombre}}</h6>
 
                 <img *ngIf="!imagenTemporal" [src]="usuario.imagen | imagen" class="w150">
                 <img *ngIf="imagenTemporal" [src]="imagenTemporal" class="w150">
-                <input (change)="seleccionaImagen($event.target.files[0])" type="file">
+                <input (change)="seleccionaImagen($event.target.files[0])" type="file" style="margin-left: 20%;">
                 <br>
                 <br>
 
-                <button (click)="cambiarImagen()" [disabled]="!imagenASubir" type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10"><i
+                <button (click)="cambiarImagen()" [disabled]="!imagenASubir"  class="btn btn-block btn-primary waves-effect waves-light m-r-10"><i
                     class="fa fa-save"></i> Actualizar foto</button>
             </div>
         </div>

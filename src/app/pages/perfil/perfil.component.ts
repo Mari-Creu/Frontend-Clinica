@@ -28,6 +28,13 @@ export class PerfilComponent implements OnInit {
     //COMPLETAR CON TODOS LOS CAMPOS Y ACTUALIZAR
     this.usuario.nombre = usuario.nombre;
     this.usuario.email = usuario.email;
+    this.usuario.telefono=usuario.telefono;
+    this.usuario.apellidos=usuario.apellidos;
+    this.usuarioService.putUsuario(this.usuario).subscribe((resp:any)=>{
+      console.log(resp);
+      Swal.fire(resp.usuario.nombre +' '+resp.usuario.apellidos, 'Tus datos han sido actualizados', 'success');
+      
+    });
 
   }
 
@@ -52,7 +59,7 @@ export class PerfilComponent implements OnInit {
   }
   cambiarImagen() {
     this.usuarioService.cambiarImagen(this.imagenASubir, this.usuario.id);
-
+    Swal.fire( 'Tu foto de perfil ha sido actualizada', 'success');
   }
 
 }
