@@ -42,9 +42,9 @@
                             <th>Nombre</th>
                             <th>Dar Cita</th>
                             <th>Ver Información</th>
-                            <th>Informe</th>
-                            <th>Rol</th>
-                            <th>Opciones</th>
+                            <th>Informes</th>
+                            
+                            <th>Eliminar</th>
                           
                         </tr>
                     </thead>
@@ -53,15 +53,15 @@
                             <td class="w70">
                                 <img [src]="paciente.imagen |imagen" class="img-50 img-circle" >
                             </td>
-                            <td>{{paciente.email}}</td>
-                            <td>{{paciente.nombre}} {{paciente.apellidos}}</td>
-                            <td> <a class="page-link" [routerLink]="['/citasMedico',paciente.id]">Nueva Cita</a></td>
-                            <td> <a class="page-link" [routerLink]="['/info',paciente.id]">Acceder</a></td>
-                            <td> <a class="btn " routerLinkActive="active" routerLink="/informes">Informes</a></td>
-                            <td> <label class="label label-danger">Paciente</label></td>
-                            <td>
-                                <button (click)="editarPaciente(paciente)" class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                                <button (click)="borrarUsuario(paciente)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                            <td class="text-center">{{paciente.email}}</td>
+                            <td class="text-center">{{paciente.nombre}} {{paciente.apellidos}}</td>
+                            <td class="text-center"> <a class="btn btn-primary" [routerLink]="['/citasMedico',paciente.id]"><i class="fa fa-stethoscope"></i></a></td>
+                            <td class="text-center"> <a class="btn btn-primary " [routerLink]="['/info',paciente.id]"><i class="fa fa-eye"></i></a></td>
+                            <td class="text-center"> <a class="btn btn-primary" routerLinkActive="active" routerLink="/informes"><i class="fa fa-book text-white"></i></a></td>
+                           
+                            <td class="text-center">
+                              
+                                <button (click)="borrarUsuario(paciente)" class="btn bg-logo "><i class="fa fa-trash-o text-white"></i></button>
                             </td>
                     </tr>
                     </tbody>

@@ -34,3 +34,13 @@
 .bg-logoClaro{
     background-color: rgb(218, 116, 178);
 }
+.letraLogo{
+    color: #C6185A;
+    font-size: 150%;
+  }
+  a:hover{
+      
+      color: #C6185A;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

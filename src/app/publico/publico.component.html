@@ -1,0 +1,129 @@
+<div class=" aplanado fondo">
+    <img src="./../assets/images/img/funcion.PNG" class=" aplanado2" alt="...">
+</div>
+<a  style="position: absolute; top:5%; right: 5%;" class="btn bg-logo text-white animated bounceInLeft" [routerLink]="['/login']">Acceder al área personal</a>
+<div>
+    <p class="text-center ">clínica<strong><strong class="letraLogo">Hache</strong></strong></p>
+    <div  class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Una persona, un proyecto de vida saludable</h1>
+            <p class="lead"><em>"Donde quiera que se ame el arte de la medicina, se ama también a la humanidad" </em>
+                <small> Platón</small></p>
+        </div>
+    </div>
+
+    <img style="position: absolute; top:80%; left: 45%; margin-bottom: 20% imagenLogo;" class="imagenLogo animated bounceInRight"
+        src="assets/images/img/logo.png" alt="Home" />
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <p>
+            Somos una clínica con el objetivo de ofrecer una <strong>asistencia médica de calidad</strong> .
+            Manteniéndonos en la vanguardia de las tecnologías
+            de última generación e integrando servicios que nos permitan una atención integral y personalizada al
+            paciente.</p>
+    </div>
+</div>
+<angular-image-slider class="fotos"
+    [autoRotate]="true"  [autoRotateAfter]="5000" [autoRotateRight]="true" [images]="imagesUrl">
+</angular-image-slider>
+
+    <div class="col text-center">
+        <h3>
+            Nuestros valores se basan en:</h3>
+    </div>
+<div class="col text-center">
+    Atención personalizada y con vocación internacional
+</div>    
+<div class="col text-center">Trato Cercano. Lado humano de la Medicina</div>
+<div class="col text-center">Tecnología Punta</div>
+<div class="col text-center">Actualización constante</div>
+<div class="col text-center">Apuesta por la Investigación médica
+</div>
+    
+<div style="background:midnightblue;" class="jumbotron jumbotron-fluid text-white mt-3">
+    <div class="container">
+        <h1 class="display-4 text-white">Nuestras especialidades</h1>
+        <div class="row">
+            <div *ngFor="let especialidad of especialidades" class="col-2">{{especialidad.nombre}}</div>
+            <div class="col-2"></div>
+
+        </div>
+    </div>
+</div>
+<div class="row " style="margin-left: 16%;">
+<p > Noticias relevantes: </p>
+</div>
+<div class="row " style="margin-left: 15%;">
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <img class="card-img-top img-fluid auto-height" src="../assets/images/img/covid.jpeg" alt="Card image cap">
+        <div class="card-body">
+            <h3 class="font-normal">¿Cómo funcionan los test rápidos del coronavirus?</h3>
+            <span class="label label-info label-rounded">Covid-19</span>
+            <p class="m-b-0 m-t-20">Estos test rápidos que se han empezado ya a utilizar son similares a los utilizados ya en PCR en todo el país, pero con una lectura más sencilla por parte del usuario</p>
+            <div class="d-flex m-t-20">
+             
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <img class="card-img-top img-fluid auto-height" src="../assets/images/img/oms.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h3 class="font-normal">La OMS pone fecha a la vacuna contra el coronavirus</h3>
+            <span class="label label-info label-rounded">Covid-19</span>
+            <span class="label label-info label-rounded">Vacuna</span>
+            <p class="m-b-0 m-t-20">La directora de Medio Ambiente, Cambio Climático y Salud de la Organización Mundial de la Salud (OMS), María Neira, ha dicho ver factible que la vacuna contra la COVID llegue a principios del año 2021, una vacuna que la organización pide fabricar y distribuir con "equidad".</p>
+            <div class="d-flex m-t-20">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="card">
+        <img class="card-img-top img-fluid auto-height" src="../assets/images/img/ciencia.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h3 class="font-normal">Comprendiendo la investigación médica</h3>
+            <span class="label label-info label-rounded">Ciencia</span>
+            <span class="label label-info label-rounded">Investigación</span>
+            <p class="m-b-0 m-t-20">Medir la realidad permite a los científicos extraer cálculos sobre la evolución de los organismos, y comprender su funcionamiento. La nanométrica está desarrollando nuevos sistemas de medición y análisis para comprender la evolución de las estructuras.
+
+                </p>
+            <div class="d-flex m-t-20">
+             
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--  [imageSize]="{width: '25%', height: 200}" -->
+<!-- [infinite]="false" -->
+
+<footer style="right: 0px; "class="container-fluid bg-logo text-white" >
+<div class="row">
+    <div class="col-12 text-center">
+        Estamos para ayudarte,  <a class="enlace" [routerLink]="['/registro']"> REGÍSTRATE </a>  para ser uno más de nuestra familia médica
+
+    </div>
+    <div class="col-6 text-center mt-4">
+        <div class="col-12">
+            <p class="text-center text-white  ">clínica<strong><strong class="letraLogo text-white">Hache</strong></strong></p>
+        </div>
+        <div class="col-12">
+            <strong>Dirección:</strong> Paseo de la carretera, 32, 1 - B.
+            Benidorm, Alicante
+         <p>
+            <strong>Teléfono:</strong> 96 586 12 05
+         </p>  
+        </div>
+    </div>
+    <div class="col-6 text-center mt-4">
+        <a type="btn- btn-primary " class="enlace"  (click)="abrirCondiciones()"> Información legal</a>
+    </div>
+</div>
+<app-condiciones *ngIf="modalAbierto" (modal)="cerrarModal($event)"></app-condiciones>
+
+</footer>

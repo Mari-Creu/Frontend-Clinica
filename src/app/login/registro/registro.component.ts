@@ -14,6 +14,7 @@ declare function init_plugins();
 })
 export class RegistroComponent implements OnInit {
   formulario: FormGroup;
+  modalAbierto=false;
 
   constructor(public usuarioService: UsuarioService, public router: Router) { }
 
@@ -71,5 +72,11 @@ export class RegistroComponent implements OnInit {
       }
 
     }));
+  }
+  abrirCondiciones(){
+    this.modalAbierto=true;
+  }
+  cerrarModal(event){
+    this.modalAbierto=false;
   }
 }

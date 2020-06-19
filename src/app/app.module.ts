@@ -10,13 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistroComponent } from './login/registro/registro.component';
 import { ServiceModule } from './services/service.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SliderModule } from 'angular-image-slider';
+import { PublicoComponent } from './publico/publico.component';
+import { CondicionesComponent } from './condiciones/condiciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
+    PublicoComponent,
+    CondicionesComponent,
 
   ],
   imports: [
@@ -27,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    SliderModule
 
   ],
   providers: [],
