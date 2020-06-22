@@ -30,10 +30,10 @@ export class RegistroComponent implements OnInit {
     );
 
     this.formulario.setValue({
-      nombre: 'Test',
-      email: 'test@test.com',
-      password: '123',
-      password2: '1234',
+      nombre: '',
+      email: '',
+      password: '',
+      password2: '',
       terminos: true
     });
 

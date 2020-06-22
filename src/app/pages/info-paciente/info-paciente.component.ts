@@ -15,6 +15,7 @@ export class InfoPacienteComponent implements OnInit {
   public idPaciente;
   public paciente: Paciente;
   public ingreso: any;
+  public nuevoInforme: boolean = false;
 
 
 
@@ -52,13 +53,16 @@ export class InfoPacienteComponent implements OnInit {
     });
   }
   darAltaIngreso(event) {
-    if(event==='null'){
+    if (event === 'null') {
       this.ingreso = null;
-    } else{
-      this.ingreso=event;
+    } else {
+      this.ingreso = event;
     }
-    
-    
+
+
+  }
+  abrirNuevoInforme(event) {
+    this.nuevoInforme = true;
   }
 
 }

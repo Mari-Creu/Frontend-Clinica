@@ -29,8 +29,8 @@
         </div>
     </div>
 </div>
-<app-modal-medico-nuevo></app-modal-medico-nuevo>
-<app-crear-medico></app-crear-medico>
+<app-modal-medico-nuevo *ngIf="masDatos"></app-modal-medico-nuevo>
+<app-crear-medico *ngIf="nuevoMedico" (nuevoMedico)="cerrarMedico($event)"></app-crear-medico>
 
 <div class="row fadeIn" *ngIf="!cargando ">
     <div class="col-12">
@@ -43,8 +43,8 @@
                         <tr>
                             <th>Imagen</th>
                             <th>Email</th>
-                            <th>Nombre</th>
-                            <th>Rol</th>
+                            
+                       
                             <th>Opciones</th>
 
                         </tr>
@@ -55,11 +55,10 @@
                                 <img [src]="medico.imagen |imagen" class="img-50 img-circle">
                             </td>
                             <td>{{medico.email}}</td>
-                            <td>{{medico.nombre}} {{medico.apellidos}}</td>
-                            <td> <label class="label label-danger">medico</label></td>
+                           
+                          
                             <td>
-                                <button (click)="editarMedico(medico)" class="btn btn-primary"><i
-                                        class="fa fa-eye"></i></button>
+                               
                                 <button (click)="borrarUsuario(medico)" class="btn btn-danger"><i
                                         class="fa fa-trash-o"></i></button>
                             </td>

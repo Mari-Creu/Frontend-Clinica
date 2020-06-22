@@ -42,7 +42,11 @@ export class MisInformesComponent implements OnInit {
     this.misInformes = this.misInformes.filter(informe =>
       !informe.paciente.id.nombre.indexOf(term)
     );
-  
+
+  }
+  cerrarInforme(event) {
+    this.informe = null;
+
   }
 
 }

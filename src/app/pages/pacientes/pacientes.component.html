@@ -37,12 +37,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Imagen</th>
-                            <th>Email</th>
-                            <th>Nombre</th>
-                            <th>Dar Cita</th>
-                            <th>Ver Información</th>
-                            <th>Informes</th>
+                            <th class="text-center">Imagen</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center" *ngIf ="usuario.rol===3">Nombre</th>
+                            <th class="text-center" *ngIf ="usuario.rol===3">Dar Cita</th>
+                            <th class="text-center" *ngIf ="usuario.rol===3">Ver Información</th>
+                          
                             
                             <th>Eliminar</th>
                           
@@ -54,10 +54,10 @@
                                 <img [src]="paciente.imagen |imagen" class="img-50 img-circle" >
                             </td>
                             <td class="text-center">{{paciente.email}}</td>
-                            <td class="text-center">{{paciente.nombre}} {{paciente.apellidos}}</td>
-                            <td class="text-center"> <a class="btn btn-primary" [routerLink]="['/citasMedico',paciente.id]"><i class="fa fa-stethoscope"></i></a></td>
-                            <td class="text-center"> <a class="btn btn-primary " [routerLink]="['/info',paciente.id]"><i class="fa fa-eye"></i></a></td>
-                            <td class="text-center"> <a class="btn btn-primary" routerLinkActive="active" routerLink="/informes"><i class="fa fa-book text-white"></i></a></td>
+                            <td *ngIf="usuario.rol===3" class="text-center">{{paciente.nombre}} {{paciente.apellidos}}</td>
+                            <td *ngIf="usuario.rol===3" class="text-center"> <a class="btn btn-primary" [routerLink]="['/citasMedico',paciente.id]"><i class="fa fa-stethoscope"></i></a></td>
+                            <td *ngIf="usuario.rol===3" class="text-center"> <a class="btn btn-primary " [routerLink]="['/info',paciente.id]"><i class="fa fa-eye"></i></a></td>
+                            
                            
                             <td class="text-center">
                               

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -14,6 +14,7 @@ import { MedicoService } from 'src/app/services/services/medico.service';
 })
 export class CrearMedicoComponent implements OnInit {
 
+  nuevoMedico= new EventEmitter<any>();
   contrasenyaGenerada = '';
   constructor(public usuarioService: UsuarioService,
               public medicoService: MedicoService) { }
@@ -42,29 +43,25 @@ export class CrearMedicoComponent implements OnInit {
           this.contrasenyaGenerada = '';
           this.medicoService.registrarMedico(resp.usuario);
           form.resetForm();
-          this.cerrarCard();
-
+          this.nuevoMedico.emit(true);
           // let medico = new Medico(resp.usuario, especialidad);
           // this.completarMedico(medico);
 
         } else {
           Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');
           this.contrasenyaGenerada = '';
+
           return;
         }
       }));
     } else {
       form.resetForm();
-      this.cerrarCard();
       Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
     }
 
   }
 
-  cerrarCard() {
-    //  this.formulario = null;
-    // this.modalUploadService.ocultarModalMedico();
-  }
+ 
   generarContrasenya() {
     const caracteres = 'abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ12346789';
     let contrasenya = '';

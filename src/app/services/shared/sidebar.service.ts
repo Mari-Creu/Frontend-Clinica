@@ -20,7 +20,7 @@ export class SidebarService {
             icono: 'fa fa-star',
             submenu: [
               { titulo: 'Estadisticas', url: '/estadisticas' },
-              { titulo: 'Mis Informes', url: '/informes' },
+              { titulo: 'Mis Informes', url: '/misInformes' },
               { titulo: 'Mis Citas', url: '/citasPaciente' }
             ]
           }
@@ -57,7 +57,6 @@ export class SidebarService {
             submenu: [
               { titulo: 'Inicio', url: '/home' },
               { titulo: 'Estadisticas', url: '/estadisticas' },
-              { titulo: 'Informes', url: '/informes' }
             ]
           },
           {
@@ -66,7 +65,7 @@ export class SidebarService {
             submenu: [
               { titulo: 'Médicos', url: '/medicos' },
               { titulo: 'Pacientes', url: '/pacientes' },
-              { titulo: 'Administradores', url: '/administradores' }
+              // { titulo: 'Administradores', url: '/administradores' }
             ]
           }
         ];

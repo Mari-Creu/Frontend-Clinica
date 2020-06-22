@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class PacientesComponent implements OnInit {
 
   public pacientes: Usuario[] = [];
+  public usuario: Usuario;
   public page = 0;
   public next_page;
   public prev_page;
@@ -24,6 +25,7 @@ export class PacientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.actualPageUsuarios();
+    this.usuario = this.usuarioService.usuario;
   }
 
 
@@ -103,6 +105,13 @@ export class PacientesComponent implements OnInit {
               'error'
             );
           }
+          if(resp.status===500){
+            Swal.fire(
+              'Error!',
+              'El usuario no ha podido ser borrado',
+              'error'
+            );
+          }
         });
 
       }
@@ -112,7 +121,7 @@ export class PacientesComponent implements OnInit {
   editarPaciente(paciente: Usuario) {
     this.modalUploadService.mostrarModal(paciente);
   }
-  abrirModal(){
+  abrirModal() {
     this.modalUploadService.mostrarModal(null);
   }
 }

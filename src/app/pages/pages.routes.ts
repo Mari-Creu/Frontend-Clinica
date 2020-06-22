@@ -12,6 +12,7 @@ import { CitasComponent } from './citas/citas.component';
 import { CitasPacienteComponent } from './citas/citas-paciente/citas-paciente.component';
 import { InfoPacienteComponent } from './info-paciente/info-paciente.component';
 import { MisInformesComponent } from './informes/mis-informes/mis-informes.component';
+import { HistorialComponent } from './informes/historial/historial.component';
 
 const pagesRoutes: Routes = [
     {
@@ -26,10 +27,11 @@ const pagesRoutes: Routes = [
             
 
             //MANTENIMIENTOS
-            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}, canActivate: [AdminGuard, MedicoGuard]},
+            { path: 'pacientes', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}},
             // tslint:disable-next-line: max-line-length
-            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}, canActivate: [AdminGuard, MedicoGuard]},
+            { path: 'pacientes/:page', component: PacientesComponent , data: { titulo: 'Pacientes', pages: 'Clínica'}},
             { path: 'informes', component: MisInformesComponent , data: { titulo: 'Informes', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
+            { path: 'misInformes', component: HistorialComponent , data: { titulo: 'Informes', pages: 'Clínica'}},
             { path: 'citasMedico', component: CitasComponent , data: { titulo: 'Citas', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
             { path: 'citasMedico/:id', component: CitasComponent , data: { titulo: 'Citas', pages: 'Clínica'}, canActivate: [ MedicoGuard]},
             // tslint:disable-next-line: max-line-length
@@ -38,7 +40,7 @@ const pagesRoutes: Routes = [
             { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
             { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
             { path: '', redirectTo: '/login', pathMatch: 'full' },
-            //paciente -->hacer guard
+            
             { path: 'citasPaciente', component: CitasPacienteComponent , data: { titulo: 'Mis Citas', pages: 'Clínica'}}
 
         ]

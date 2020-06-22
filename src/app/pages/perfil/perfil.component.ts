@@ -22,18 +22,27 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usuario= this.usuarioService.usuario;
+    this.usuario = this.usuarioService.usuario;
+    if (this.usuario.nombre === null) {
+      this.usuario.nombre = '';
+    }
+    if (this.usuario.apellidos === null) {
+      this.usuario.apellidos = '';
+    }
+    if (this.usuario.telefono === null) {
+      this.usuario.telefono = '';
+    }
   }
   guardar(usuario: Usuario) {
     //COMPLETAR CON TODOS LOS CAMPOS Y ACTUALIZAR
     this.usuario.nombre = usuario.nombre;
     this.usuario.email = usuario.email;
-    this.usuario.telefono=usuario.telefono;
-    this.usuario.apellidos=usuario.apellidos;
-    this.usuarioService.putUsuario(this.usuario).subscribe((resp:any)=>{
+    this.usuario.telefono = usuario.telefono;
+    this.usuario.apellidos = usuario.apellidos;
+    this.usuarioService.putUsuario(this.usuario).subscribe((resp: any) => {
       console.log(resp);
-      Swal.fire(resp.usuario.nombre +' '+resp.usuario.apellidos, 'Tus datos han sido actualizados', 'success');
-      
+      Swal.fire(resp.usuario.nombre + ' ' + resp.usuario.apellidos, 'Tus datos han sido actualizados', 'success');
+
     });
 
   }
@@ -59,7 +68,7 @@ export class PerfilComponent implements OnInit {
   }
   cambiarImagen() {
     this.usuarioService.cambiarImagen(this.imagenASubir, this.usuario.id);
-    Swal.fire( 'Tu foto de perfil ha sido actualizada', 'success');
+    Swal.fire('¡Estupendo!', 'Tu foto de perfil ha sido actualizada', 'success');
   }
 
 }

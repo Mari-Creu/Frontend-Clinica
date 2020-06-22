@@ -101,8 +101,16 @@ export class CitasPacienteComponent implements OnInit {
 
     let cita = new Cita(idPaciente, form.value.medico, fechaConsulta, null, horaIni[0].key, 'motivoComsulta');
     this.citaService.crearCita(cita).subscribe((resp: any) => {
+      let nombre = resp.cita.paciente.id.nombre;
+      let apellidos = resp.cita.paciente.id.apellidos;
+      if (nombre === null) {
+        nombre = '';
+      }
+      if (apellidos === null) {
+        apellidos = '';
+      }
       if (resp.code === '201') {
-        Swal.fire(resp.cita.fechaProgramada + ' a las ' + HORAS[resp.cita.horaCita - 1].hora, resp.cita.paciente.id.nombre + ' ' + resp.cita.paciente.id.apellidos, 'success');
+        Swal.fire(resp.cita.fechaProgramada + ' a las ' + HORAS[resp.cita.horaCita - 1].hora,nombre + ' ' + apellidos, 'success');
         form.resetForm();
         this.bsValue = new Date();
       } else {

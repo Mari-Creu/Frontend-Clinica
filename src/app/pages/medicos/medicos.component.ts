@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class MedicosComponent implements OnInit {
   public medicos: Usuario[] = [];
+  public nuevoMedico = false;
+  public masDatos = false;
   public page = 0;
   public nextPage: number;
   public prevPage: number;
@@ -18,8 +20,8 @@ export class MedicosComponent implements OnInit {
   public cargando = true;
   public termino: string = null;
   constructor(public usuarioService: UsuarioService,
-              private route: ActivatedRoute, private router: Router,
-              public modalUploadService: ModalUploadService) { }
+    private route: ActivatedRoute, private router: Router,
+    public modalUploadService: ModalUploadService) { }
 
   ngOnInit(): void {
     this.actualPageUsuarios();
@@ -53,6 +55,10 @@ export class MedicosComponent implements OnInit {
         this.totalMedicos = resp.total_items_count;
 
       });
+  }
+  cerrarMedico(event) {
+    this.nuevoMedico = false;
+    this.masDatos = true;
   }
   buscarUsuario(termino: string) {
     this.termino = termino;
@@ -112,7 +118,7 @@ export class MedicosComponent implements OnInit {
     this.modalUploadService.mostrarModal(medico);
   }
   abrirModal() {
-    this.modalUploadService.mostrarModalMedico();
-    
+    this.nuevoMedico = true;
+
   }
 }

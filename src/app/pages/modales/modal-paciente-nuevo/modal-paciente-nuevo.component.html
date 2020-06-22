@@ -25,6 +25,12 @@
                     <h2><strong><label *ngIf="contrasenyaGenerada">{{ contrasenyaGenerada }}</label></strong></h2>
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="checkbox ">
+                    <input name="recordar" id="checkbox-signup" type="checkbox" required>
+                    <label for="checkbox-signup"> El paciente ha leído y firmado el contrato legal vinculante</label>
+                  </div>
+                </div>
     
                 <div class="form-group text-center m-t-20">
                   <div class="col-xs-12">
@@ -32,12 +38,7 @@
                       type="submit">Registrar Paciente</button>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="checkbox ">
-                    <input name="recordar" id="checkbox-signup" type="checkbox">
-                    <label for="checkbox-signup"> Recordar mis credenciales </label>
-                  </div>
-                </div>
+               
     
               </form>
             </div>
