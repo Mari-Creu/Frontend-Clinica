@@ -37,14 +37,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     const usuario = new Usuario(form.value.email, form.value.password, 'usuario');
-    // this.usuarioService.login(usuario, form.value.recordar).subscribe(
     this.usuarioService.signup(usuario).subscribe(
-      // if (resp ) {
-      //   this.router.navigate(['/home']);
-      // } else {
-      //   swal.fire('Error', 'Credenciales Incorrectas', 'error');
-      // }
-
       (response: any) => {
         if (response.code === 200) {
           this.email = response.user.email;
@@ -58,9 +51,7 @@ export class LoginComponent implements OnInit {
 
       },
       error => {
-        // this.status='error';
         console.log(error);
-
       }
 
     );

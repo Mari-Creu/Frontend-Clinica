@@ -25,17 +25,12 @@ export class CrearMedicoComponent implements OnInit {
 
   crearMedico(form: NgForm) {
 
-
-
-    // this.formulario = form;
     if (form.invalid) {
       Swal.fire('ERROR', '¡Compruebe que el email es válido y que ha generado una contraseña!', 'error');
       return;
     }
     if (this.contrasenyaGenerada !== '') {
-      // CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
-      const usuario = new Usuario(form.value.email, 'test', '', '', 3);
-      // let especialidad = form.value.especialidad;
+      const usuario = new Usuario(form.value.email, this.contrasenyaGenerada, '', '', 3);
 
       this.usuarioService.crearUsuario(usuario).subscribe((async (resp: any) => {
         if (resp.code === 201) {
@@ -44,8 +39,7 @@ export class CrearMedicoComponent implements OnInit {
           this.medicoService.registrarMedico(resp.usuario);
           form.resetForm();
           this.nuevoMedico.emit(true);
-          // let medico = new Medico(resp.usuario, especialidad);
-          // this.completarMedico(medico);
+        
 
         } else {
           Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');

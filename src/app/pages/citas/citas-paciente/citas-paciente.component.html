@@ -1,9 +1,10 @@
 <h1>Seleccione la especialidad: </h1>
 <div class="row text-white">
-    <div class="card text-center" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
 
-        <img width="100"class="card-img text-center" src="assets/images/img/1.PNG" alt="Home" /> 
         <div class="card-body ">
+        <img width="100" style="margin-left: 20%;" src="assets/images/img/1.PNG" alt="Home" /> 
+
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[0])">
                MEDICINA GENERAL
             </button>
@@ -11,10 +12,11 @@
             <!-- <a href="#" >Go somewhere</a> -->
         </div>
     </div>
-    <div class="card text-center" style="width: 18rem;">
+    <div class="card " style="width: 18rem;">
 
-        <img width="100"class="card-img text-center" src="assets/images/img/traumatologia.PNG" alt="Home" /> 
+        
         <div class="card-body ">
+            <img width="100"   style="margin-left: 15%;" class=" text-center" src="assets/images/img/traumatologia.PNG" alt="Home" /> 
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[1])">
                 TRAUMATOLOGÍA
             </button>
@@ -22,9 +24,10 @@
             <!-- <a href="#" >Go somewhere</a> -->
         </div>
     </div>
-    <div class="card text-center" style="width: 18rem;">
-        <img width="100"class="card-img text-center" src="assets/images/img/medicina3.PNG" alt="Home" /> 
+    <div class="card " style="width: 18rem;">
+        
         <div class="card-body ">
+            <img width="100"class=" text-center" style="margin-left: 15%;" src="assets/images/img/medicina3.PNG" alt="Home" /> 
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[2])">
                 MEDICINA INTERNA
             </button>
@@ -32,9 +35,9 @@
             <!-- <a href="#" >Go somewhere</a> -->
         </div>
     </div>
-    <div class="card text-center" style="width: 18rem;">
-        <img width="100"class="card-img text-center" src="assets/images/img/neurologia.PNG" alt="Home" /> 
+    <div class="card " style="width: 18rem;">
         <div class="card-body ">
+            <img width="100"class=" text-center"  style="margin-left: 11%;" src="assets/images/img/neurologia.PNG" alt="Home" /> 
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[3])">
                 NEUROLOGÍA
             </button>
@@ -44,9 +47,10 @@
     </div>
 
     
-    <div class="card text-center" style="width: 18rem;">
-        <img width="100"class="card-img text-center" src="assets/images/img/alergologia.PNG" alt="Home" /> 
+    <div class="card " style="width: 18rem;">
         <div class="card-body ">
+        <img width="100"class=" text-center" style="margin-left: 11%;" src="assets/images/img/alergologia.PNG" alt="Home" /> 
+
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[4])">
                 ALERGOLOGÍA
             </button>
@@ -54,9 +58,9 @@
             <!-- <a href="#" >Go somewhere</a> -->
         </div>
     </div>
-    <div class="card text" style="width: 18rem;">
-        <img width="100"class="card-img text-center" src="assets/images/img/cardiologia.PNG" alt="Home" /> 
+    <div class="card " style="width: 18rem;">
         <div class="card-body ">
+            <img width="100"class=" text-center" style="margin-left: 11%;" src="assets/images/img/cardiologia.PNG" alt="Home" /> 
             <button class="btn bg-logo text-white" (click)="buscarMedicosEspecialidad(especialidades[6])">
                 CARDIOLOGÍA
             </button>
@@ -71,7 +75,7 @@
 <form *ngIf="medicos" ngNativeValidate #form="ngForm" class="form-horizontal form-material"
     (ngSubmit)="pedirCitaPaciente(form)">
     <div class="row">
-        <div class=" col-4 col-xs-12 form-group">
+        <div class=" col-6 col-xs-12 form-group">
             <label for="medico" class="mr-4">Médicos Especializados: </label>
             <select ngModel id="medico" class="col-3 form-control text-center" name="medico">
                 <option *ngFor="let medico of medicos" [value]="medico.id.id" class="text-center">{{medico.id.email}}
@@ -82,11 +86,11 @@
         <div class=" col-4 col-xs-12 form-group">
 
             <label for="fechaConsulta">Fecha de consulta</label>
-            <input id="fechaConsulta" name="fechaConsulta" ngModel type="text" bsDatepicker
+            <input id="fechaConsulta" name="fechaConsulta" ngModel type="text" bsDatepicker autocomplete="off"
                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}" class="form-control"
                 (bsValueChange)="onValueChange($event,form)" [minDate]="minDate" [(bsValue)]="bsValue">
         </div>
-        <div class=" col-4 col-xs-12 form-group">
+        <div class=" col-2 col-xs-12 form-group">
             <label for="horaCita" class="mr-4">Horas disponibles: </label>
             <select ngModel id="horaCita" class="col-3 form-control text-center" name="horaCita">
                 <option *ngFor="let hora of horas" [value]="hora.hora" class="text-center">{{hora.hora}}
@@ -105,5 +109,5 @@
     <!-- </mat-form-field> -->
     <!-- </div> -->
 
-    <button class="btn btn-primary text-white btn-lg  text-uppercase btn-rounded" type="submit">Guardar Cita</button>
+    <button class="btn btn-primary text-white btn-lg  text-uppercase btn-rounded " style="margin-left:35%;" type="submit">Guardar Cita</button>
 </form>

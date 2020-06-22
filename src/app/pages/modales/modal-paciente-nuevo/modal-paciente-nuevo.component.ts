@@ -36,8 +36,7 @@ export class ModalPacienteNuevoComponent implements OnInit {
     }
     if (this.contrasenyaGenerada != '') {
 
-      //CAMBIAR TEST POR THIS.CONTRASENYAGENERADA
-      const usuario = new Usuario(form.value.email, 'test', '', '', 1);
+      const usuario = new Usuario(form.value.email, this.contrasenyaGenerada, '', '', 1);
 
       this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
 

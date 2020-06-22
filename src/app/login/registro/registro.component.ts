@@ -14,7 +14,7 @@ declare function init_plugins();
 })
 export class RegistroComponent implements OnInit {
   formulario: FormGroup;
-  modalAbierto=false;
+  modalAbierto = false;
 
   constructor(public usuarioService: UsuarioService, public router: Router) { }
 
@@ -64,19 +64,19 @@ export class RegistroComponent implements OnInit {
     this.usuarioService.crearUsuario(usuario).subscribe(((resp: any) => {
       if (resp.code === 201) {
         swal.fire('¡BIENVENIDO ' + resp.usuario.nombre + '!', ' ¡Ya eres un nuevo miembro de nuestra clínica!', 'success');
-        //FALTA CAMBIAR Y HACER EL LOGIN AUTOMÁTICAMENTE PARA QUE ENTRE A HOME CON EL TOKEN
+        
         this.usuarioService.guardarStorage(resp.usuario.id, resp.token.token, resp.usuario);
         this.router.navigate(['/home']);
       } else {
-        swal.fire('ERROR', '¡Ha ocurrido un error durante su registro, !'+resp, 'error');
+        swal.fire('ERROR', '¡Ha ocurrido un error durante su registro, !' + resp, 'error');
       }
 
     }));
   }
-  abrirCondiciones(){
-    this.modalAbierto=true;
+  abrirCondiciones() {
+    this.modalAbierto = true;
   }
-  cerrarModal(event){
-    this.modalAbierto=false;
+  cerrarModal(event) {
+    this.modalAbierto = false;
   }
 }
