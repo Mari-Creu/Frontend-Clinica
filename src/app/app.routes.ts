@@ -8,7 +8,7 @@ import { PublicoComponent } from './publico/publico.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'public', component: PublicoComponent },
+  { path: 'inicio', component: PublicoComponent },
   { path: '**', component: ErrorComponent }
 ];
 

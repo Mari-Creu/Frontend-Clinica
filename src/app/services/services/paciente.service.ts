@@ -20,12 +20,20 @@ export class PacienteService {
   // }
   actualizarPaciente(paciente: Paciente) {
     const url = URL_SERVICIOS + '/putPaciente';
-  
+
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization', this.usuarioService.token);
     return this.http.put(url, paciente, { headers: headers });
-   
+
   }
- 
+  findPacientes() {
+    const url = URL_SERVICIOS + '/getPacientes';
+
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.get(url, { headers: headers });
+  }
+
 }

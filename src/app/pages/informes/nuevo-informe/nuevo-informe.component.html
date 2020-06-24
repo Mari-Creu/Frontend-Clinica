@@ -5,11 +5,11 @@
             <div class="card-body">
                 <div *ngIf="!operacionEnTramite" class="row">
                     <div class="col-5"></div>
-                    <div ><button *ngIf="!paciente.baja" class="btn btn-danger " (click)="darBajaAlPaciente()"> Dar Baja </button></div>
+                    <div ><button *ngIf="!paciente.baja" class="btn bg-logo text-white " (click)="darBajaAlPaciente()"> Dar Baja </button></div>
                     <div ><button *ngIf="paciente.baja" class="btn btn-success" (click)="darBajaAlPaciente()"> Dar Alta</button></div>
 
-                    <div ><button *ngIf="!ingreso" class="btn btn-primary" (click)="buscarHabitacion()" >  Gestionar Ingreso del paciente </button></div>
-                    <div ><button class="btn btn-info" (click)="programarIntervencion()"> Programar Intervención </button></div>
+                    <div ><button *ngIf="!ingreso" class="btn  bg-logo text-white" (click)="buscarHabitacion()" >  Gestionar Ingreso del paciente </button></div>
+                    <!-- <div ><button class="btn btn-info" (click)="programarIntervencion()"> Programar Intervención </button></div> -->
 
                 </div>
 

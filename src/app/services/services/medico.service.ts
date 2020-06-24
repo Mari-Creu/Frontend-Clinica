@@ -40,11 +40,8 @@ export class MedicoService {
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization', this.usuarioService.token);
-    this.http.post(url, this.medico, { headers: headers }).subscribe((resp: any) => {
+    return this.http.post(url, this.medico, { headers: headers });
 
-      console.log(resp);
-
-    });
   }
   registrarMedico(usuario: Usuario) {
     this.medico = new Medico(usuario);
@@ -68,5 +65,13 @@ export class MedicoService {
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Authorization', this.usuarioService.token);
     return this.http.post(url, especialidad, { headers: headers });
+  }
+  getHorario(id:any) {
+    const url = URL_SERVICIOS + '/getHorarios/' + id;
+    console.log(id);
+    
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.get(url, { headers: headers });
   }
 }

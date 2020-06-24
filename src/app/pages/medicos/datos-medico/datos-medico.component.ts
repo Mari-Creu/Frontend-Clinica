@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MedicoService } from 'src/app/services/services/medico.service';
 import { EspecialidadService } from 'src/app/services/service.index';
 import { Especialidad } from 'src/app/models/especialidad.model';
@@ -8,6 +8,7 @@ import { esLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Medico } from 'src/app/models/medico.model';
+import Swal from 'sweetalert2';
 defineLocale('es', esLocale);
 
 @Component({
@@ -20,6 +21,7 @@ export class DatosMedicoComponent implements OnInit {
   locale = 'es';
   colorTheme = 'theme-default';
   bsConfig: Partial<BsDatepickerConfig>;
+  @Output() actualizado = new EventEmitter<any>();
 
   especialidades: Array<Especialidad> = [];
 
@@ -40,10 +42,19 @@ export class DatosMedicoComponent implements OnInit {
   }
 
   completarMedico(form: NgForm) {
- 
-    let medico = new Medico(this.medicoService.medico.id, form.value.especialidad,
-      new Date(form.value.fechaContratacion), new Date(form.value.fechaFinContrato));
-    this.medicoService.actualizarDatosMedico(medico);
+    console.log(form.value.fechaContratacion > form.value.fechaFinContrato);
+    console.log(!form.value.fechaFinContrato);
+    if (!form.value.fechaFinContrato || form.value.fechaContratacion < form.value.fechaFinContrato) {
+      let medico = new Medico(this.medicoService.medico.id, form.value.especialidad,
+        new Date(form.value.fechaContratacion), new Date(form.value.fechaFinContrato));
+      this.medicoService.actualizarDatosMedico(medico).subscribe((resp: any) => {
+        Swal.fire('Datos Guardados', '', 'success');
+        this.actualizado.emit(true);
+      });
+    } else {
+      Swal.fire('Datos Erróneos', 'Revise las fechas introducidas', 'error');
+    }
+
   }
 
 }

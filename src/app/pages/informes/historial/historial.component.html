@@ -6,12 +6,11 @@
                 <h4 class="card-title"> Historial Clínico</h4>
                 <div class="row text-center">
                     <div *ngFor="let informe of historialInformes" class="col-2  col-lg-3 col-xs-6 mx-1">
-                        <h6 class="display-4">{{informe.fechaInforme | date:'dd-MM-yyyy'}}</h6>
-                       
-                        <hr class="my-4">
+                        
                         
                         <p class="lead">
-                            <a class="btn btn-primary btn-lg text-white" (click)="abrirModal(informe)" role="button">Leer Informe</a>
+                            
+                            <a class="btn btn-primary text-white" (click)="abrirModal(informe)" role="button">{{informe.fechaInforme | date:'dd-MM-yyyy'}} Leer Informe</a>
                         </p>
                     </div>
                 </div>

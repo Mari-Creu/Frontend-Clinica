@@ -24,8 +24,13 @@ export class CitasPacienteComponent implements OnInit {
   locale = 'es';
   bsConfig: Partial<BsDatepickerConfig>;
   horas = [];
+  horasMedico = []
   bsValue = new Date();
   minDate;
+  citas = [];
+  diasTrabajo = [];
+  horasTrabajo = [];
+  diasDesactivados = [0, 1, 2, 3, 4, 5, 6];
   constructor(
     public citaService: CitaService,
     public usuarioService: UsuarioService,
@@ -47,6 +52,11 @@ export class CitasPacienteComponent implements OnInit {
     });
     console.log(this.especialidades);
 
+    this.citaService.buscarCitas().subscribe((resp: any) => {
+      this.citas = resp.cita;
+      console.log(this.citas);
+
+    });
   }
   buscarMedicosEspecialidad(especialidad) {
 
@@ -72,7 +82,7 @@ export class CitasPacienteComponent implements OnInit {
 
       this.medicoService.consultarCitasDisponibles(dia, form.value.medico).subscribe(
         (resp: any) => {
-          let horasLibres = HORAS;
+          let horasLibres = this.horasMedico;
           let horasOcupadas = [];
           resp.citas.forEach(element => {
             horasOcupadas.push(element.horaCita);
@@ -92,7 +102,7 @@ export class CitasPacienteComponent implements OnInit {
     }
   }
   pedirCitaPaciente(form: NgForm) {
-    let horaIni: any = HORAS.filter((num: any) => num.hora === form.value.horaCita);
+    let horaIni: any = this.horas.filter((num: any) => num.hora === form.value.horaCita);
     console.log(horaIni);
 
 
@@ -110,12 +120,53 @@ export class CitasPacienteComponent implements OnInit {
         apellidos = '';
       }
       if (resp.code === '201') {
-        Swal.fire(resp.cita.fechaProgramada + ' a las ' + HORAS[resp.cita.horaCita - 1].hora,nombre + ' ' + apellidos, 'success');
+        Swal.fire(resp.cita.fechaProgramada + ' a las ' + HORAS[resp.cita.horaCita - 1].hora, nombre + ' ' + apellidos, 'success');
         form.resetForm();
         this.bsValue = new Date();
+        this.citaService.buscarCitas().subscribe((resp: any) => {
+          this.citas = resp.cita;
+        });
+
       } else {
         Swal.fire('No se ha guardado la cita', 'Vuelva a intentarlo', 'error');
       }
     });
+  }
+
+  cambiarHoras(event) {
+    this.medicoService.getHorario(event.form.value.medico).subscribe((resp: any) => {
+      resp.forEach(element => {
+        this.diasTrabajo.push(+element.dia);
+        if (this.diasDesactivados.includes(+element.dia)) {
+          this.diasDesactivados = this.diasDesactivados.filter(e => e !== +element.dia);
+        }
+      });
+
+      resp.forEach(element => {
+        this.horasTrabajo.push(element.horario.horarioInicio);
+        this.horasTrabajo.push(element.horario.horaFin);
+
+      });
+      let horaInicio = this.horasTrabajo[0];
+      let i = horaInicio;
+      let horaFin = this.horasTrabajo[1];
+
+      while (i < horaFin) {
+        console.log(i);
+
+        this.horas.push(HORAS[i]);
+        i++;
+      }
+      this.horasMedico = this.horas;
+      console.log(this.horas);
+
+      console.log(this.diasDesactivados);
+
+      console.log(this.horasTrabajo);
+
+
+
+    });
+
   }
 }

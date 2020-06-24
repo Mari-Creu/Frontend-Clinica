@@ -4,7 +4,7 @@
             <div class="card-body">
                 Nuevo Médico
 
-                <form ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="crearMedico(form)">
+                <form  *ngIf="!medicoCreado" ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="crearMedico(form)">
                     <div class="form-group m-t-40 row">
                         <div class="col-7 col-xs-12">
                             <input ngModel name="email" class="form-control " type="text"
@@ -29,9 +29,9 @@
                     </div>
                 </form>
 
-                <app-datos-medico></app-datos-medico>
+                <app-datos-medico *ngIf="masDatos" (actualizado)="datosActualizados($event)"></app-datos-medico>
 
-                <app-horarios></app-horarios>
+                <app-horarios *ngIf="medicoCreado"></app-horarios>
             </div>
         </div>
     </div>

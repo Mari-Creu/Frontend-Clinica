@@ -28,6 +28,8 @@ export class NuevoInformeComponent implements OnInit {
   @Input() paciente: Paciente;
   @Input() ingreso: Ingreso;
   @Output() ingresoHijo = new EventEmitter<any>();
+  @Output() recargar = new EventEmitter<any>();
+  
 
 
   constructor(public usuarioService: UsuarioService, public pacienteService: PacienteService, public informeService: InformeService, public ingresoService: IngresoService) {
@@ -90,9 +92,10 @@ export class NuevoInformeComponent implements OnInit {
     this.ingresoService.ingresar(ingreso).subscribe((resp: any) => {
       console.log(resp);
       this.ingreso = resp.ingreso;
+      this.habitacion = null;
       this.ingresoHijo.emit(this.ingreso);
       Swal.fire({
-        title: 'Asignada la habitació nº '+resp.ingreso.habitacion.numero+' de la '+resp.ingreso.planta.nombre,
+        title: 'Asignada la habitació nº ' + resp.ingreso.habitacion.numero + ' de la ' + resp.ingreso.habitacion.planta.nombre,
         text: "Rellene el informe correspondiente",
         icon: 'info',
         // showCancelButton: true,
@@ -118,11 +121,11 @@ export class NuevoInformeComponent implements OnInit {
     }
     );
   }
-  programarIntervencion() {
-
-  }
+ 
   estadoOperacion(event) {
+    this.hacerInforme = false;
     this.operacionEnTramite = false;
+    this.recargar.emit(true);
   }
   finalizarOperacionHabitacion() {
     this.operacionEnTramite = false;

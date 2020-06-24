@@ -64,5 +64,7 @@ export class InfoPacienteComponent implements OnInit {
   abrirNuevoInforme(event) {
     this.nuevoInforme = true;
   }
-
+recargarHistorial(event){
+  
+}
 }

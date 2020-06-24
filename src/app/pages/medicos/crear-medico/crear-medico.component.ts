@@ -14,10 +14,12 @@ import { MedicoService } from 'src/app/services/services/medico.service';
 })
 export class CrearMedicoComponent implements OnInit {
 
-  nuevoMedico= new EventEmitter<any>();
+  nuevoMedico = new EventEmitter<any>();
+  medicoCreado = false;
+  masDatos=false;
   contrasenyaGenerada = '';
   constructor(public usuarioService: UsuarioService,
-              public medicoService: MedicoService) { }
+    public medicoService: MedicoService) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +41,8 @@ export class CrearMedicoComponent implements OnInit {
           this.medicoService.registrarMedico(resp.usuario);
           form.resetForm();
           this.nuevoMedico.emit(true);
-        
+          this.medicoCreado = true;
+          this.masDatos=true;
 
         } else {
           Swal.fire('ERROR', '¡Ha ocurrido un error durante el registro! ' + resp.msg, 'error');
@@ -55,7 +58,7 @@ export class CrearMedicoComponent implements OnInit {
 
   }
 
- 
+
   generarContrasenya() {
     const caracteres = 'abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ12346789';
     let contrasenya = '';
@@ -63,5 +66,7 @@ export class CrearMedicoComponent implements OnInit {
     this.contrasenyaGenerada = contrasenya;
   }
 
-
+  datosActualizados(event) {
+this.masDatos=false;
+  }
 }

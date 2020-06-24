@@ -29,7 +29,7 @@ export class PerfilComponent implements OnInit {
     if (this.usuario.apellidos === null) {
       this.usuario.apellidos = '';
     }
-    if (this.usuario.telefono === null) {
+    if (this.usuario.telefono === undefined) {
       this.usuario.telefono = '';
     }
   }

@@ -29,6 +29,8 @@ import { IntervencionesComponent } from './informes/nuevo-informe/intervenciones
 import { FormInformeComponent } from './informes/nuevo-informe/form-informe/form-informe.component';
 import { ModalInformeComponent } from './modales/modal-informe/modal-informe.component';
 import { MisInformesComponent } from './informes/mis-informes/mis-informes.component';
+import { MisCitasComponent } from './citas/citas-paciente/mis-citas/mis-citas.component';
+import { CitasMedicoComponent } from './citas/citas-medico/citas-medico.component';
 
 
 
@@ -57,6 +59,8 @@ import { MisInformesComponent } from './informes/mis-informes/mis-informes.compo
     FormInformeComponent,
     ModalInformeComponent,
     MisInformesComponent,
+    MisCitasComponent,
+    CitasMedicoComponent,
   ],
   exports: [
     HomeComponent,

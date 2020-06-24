@@ -1,0 +1,37 @@
+<div class="row fadeIn mt-4 ">
+    <div class="col-12">
+        <div class="card" >
+            <div class="card-body">
+
+                <h3 class="card-title">Mis Citas</h3>
+                <div class="row ">
+                    <table class=" col-12  text-center table table-hover" *ngIf="citas!==[]">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Fecha Cita</th>
+                                <th class="text-center">Hora</th>
+                                <th class="text-center">Médico</th>
+                                <th class="text-center">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cita of citas">
+                                <td class="text-center">{{cita.fechaProgramada}} </td>
+                                <td class="text-center">{{getHora(cita.horaCita)}}</td>
+                                <td class="text-center">{{cita.medico.id.nombre}} {{cita.medico.id.apellidos}}</td>
+                                <td class="text-center">
+                                    <button (click)="borrarCita(cita)" class="btn bg-logo "><i
+                                            class="fa fa-trash-o text-white"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                </div>
+              
+
+
+            </div>
+        </div>
+    </div>
+</div>

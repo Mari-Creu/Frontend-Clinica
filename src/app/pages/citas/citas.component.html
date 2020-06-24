@@ -5,36 +5,47 @@
                 <div class="box-body">
                     <form ngNativeValidate #form="ngForm" class="form-horizontal form-material"
                         (ngSubmit)="pedirCita(form)">
-                     
 
-                        <div class=" col-4 col-xs-12 form-group">
+                        <div class="row">
+                            <div class=" col-5 col-xs-12 form-group">
+                                <label for="paciente" class="mr-4">Paciente: </label>
+                                <!-- *ngIf="idPaciente===undefined  || idPaciente===''"  -->
+                                <select *ngIf="!paciente" ngModel id="paciente" class=" form-control text-center" name="paciente">
+                                    <option *ngFor="let paciente of pacientes" [value]="paciente.id" class="text-center">
+                                        {{paciente.id}}-{{paciente.nombre}} {{paciente.apellidos}}
+                                    </option>
+                                </select>
+                                <input type="text" *ngIf="paciente" [value]="nombrePaciente" disabled/>
+                            </div>
+                            <div class=" col-4 col-xs-12 form-group">
 
-                            <label for="fechaConsulta">Fecha de consulta</label>
-                            <input id="fechaConsulta"  name="fechaConsulta"
-                                ngModel type="text"  autocomplete="off" bsDatepicker
-                                [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}"
-                                class="form-control"
-                                 (bsValueChange)="onValueChange($event)" 
-                                 [minDate]="minDate" 
-                                 [(bsValue)]="bsValue"
-                                 >
+                                <label for="fechaConsulta">Fecha de consulta:</label>
+                                <input id="fechaConsulta" name="fechaConsulta" ngModel type="text" autocomplete="off"
+                                    bsDatepicker
+                                    [daysDisabled]="diasDesactivados"
+                                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}"
+                                    class="form-control" (bsValueChange)="onValueChange($event)" [minDate]="minDate"
+                                    [(bsValue)]="bsValue" required>
+                            </div>
+                            <div class=" col-3 col-xs-12 form-group">
+                                <label for="horaCita" class="mr-4">Horas disponibles: </label>
+                                <select ngModel id="horaCita" class=" form-control text-center" name="horaCita" required>
+                                    <option *ngFor="let hora of horas" [value]="hora.hora" class="text-center">
+                                        {{hora.hora}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-12 form-group">
+
+                                <label for="textarea" class="mb-4">Motivo de la consulta:</label>
+                                <textarea name="textarea" id="textarea" class="form-control" ></textarea>
+                                </div>
+                            
                         </div>
-                        <div class=" col-4 col-xs-12 form-group">
-                        <label for="horaCita" class="mr-4">Horas disponibles: </label>
-                        <select ngModel id="horaCita" class="col-3 form-control text-center" name="horaCita"
-                         >
-                            <option *ngFor="let hora of horas" [value]="hora.hora" class="text-center">{{hora.hora}}
-                            </option>
-                        </select>
-                        </div>
-                        <!-- <div class=" col-4 col-xs-12 form-group"> -->
-                        <!-- <mat-form-field class="example-full-width"> -->
-                            <!-- <mat-label>Motivo de la consulta</mat-label> -->
-                            <!-- <textarea matInput ngModel name="motivo" placeholder="Ex. It makes me feel..."></textarea> -->
-                          <!-- </mat-form-field> -->
-<!-- </div> -->
 
-                          <button class="btn btn-primary btn-lg  text-uppercase btn-rounded" type="submit">Guardar Cita</button>
+                      
+                        <button class="btn btn-primary btn-lg  text-uppercase btn-rounded" style="margin-left: 40%;" type="submit">Guardar
+                            Cita</button>
                     </form>
 
                 </div>
@@ -47,3 +58,4 @@
   { title: 'event 1', date: '2020-06-01' },
   { title: 'event 2', date: '2020-06-02' }
 ]"></full-calendar> -->
+<app-citas-medico *ngIf="citas!==[]" [citas]="citas"></app-citas-medico>

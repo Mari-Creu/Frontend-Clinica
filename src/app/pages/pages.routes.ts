@@ -39,7 +39,7 @@ const pagesRoutes: Routes = [
             
             { path: 'medicos', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
             { path: 'medicos/:page', component: MedicosComponent , data: { titulo: 'Médicos', pages: 'Clínica'}, canActivate: [AdminGuard]},
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
+            { path: '', redirectTo: '/inicio', pathMatch: 'full' },
             
             { path: 'citasPaciente', component: CitasPacienteComponent , data: { titulo: 'Mis Citas', pages: 'Clínica'}}
 

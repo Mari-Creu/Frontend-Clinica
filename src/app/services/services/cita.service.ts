@@ -19,4 +19,23 @@ export class CitaService {
       .set('Authorization', this.usuarioService.token);
     return this.http.post(url, cita, { headers: headers });
   }
+  buscarCitas(){
+    const url = URL_SERVICIOS + '/buscarCitas/' + this.usuarioService.usuario.id;
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.get(url,  { headers: headers });
+  }
+  borrarCita(cita:any){
+    const url = URL_SERVICIOS + '/deleteCita';
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.post(url, cita, { headers: headers });
+  }
+  buscarCitasMedico(){
+    const url = URL_SERVICIOS + '/buscarCitasMedico/' + this.usuarioService.usuario.id;
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.usuarioService.token);
+    return this.http.get(url,  { headers: headers });
+  }
 }

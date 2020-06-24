@@ -75,24 +75,24 @@
 <form *ngIf="medicos" ngNativeValidate #form="ngForm" class="form-horizontal form-material"
     (ngSubmit)="pedirCitaPaciente(form)">
     <div class="row">
-        <div class=" col-6 col-xs-12 form-group">
-            <label for="medico" class="mr-4">Médicos Especializados: </label>
-            <select ngModel id="medico" class="col-3 form-control text-center" name="medico">
+        <div class=" col-5 col-xs-12 form-group">
+            <label for="medico">Médicos Especializados: </label>
+            <select ngModel #medico  id="medico" class=" form-control text-center" name="medico" (change)="cambiarHoras(form)">
                 <option *ngFor="let medico of medicos" [value]="medico.id.id" class="text-center">{{medico.id.email}}
                     {{medico.id.apellidos}}
                 </option>
             </select>
         </div>
-        <div class=" col-4 col-xs-12 form-group">
+        <div class=" col-3 col-xs-12 form-group">
 
             <label for="fechaConsulta">Fecha de consulta</label>
             <input id="fechaConsulta" name="fechaConsulta" ngModel type="text" bsDatepicker autocomplete="off"
                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY',  containerClass: 'theme-default'}" class="form-control"
-                (bsValueChange)="onValueChange($event,form)" [minDate]="minDate" [(bsValue)]="bsValue">
+                (bsValueChange)="onValueChange($event,form)" [daysDisabled]="diasDesactivados" [minDate]="minDate" [(bsValue)]="bsValue">
         </div>
-        <div class=" col-2 col-xs-12 form-group">
-            <label for="horaCita" class="mr-4">Horas disponibles: </label>
-            <select ngModel id="horaCita" class="col-3 form-control text-center" name="horaCita">
+        <div class=" col-3 col-xs-12 form-group">
+            <label for="horaCita" >Horas disponibles: </label>
+            <select ngModel id="horaCita" class=" form-control text-center" name="horaCita">
                 <option *ngFor="let hora of horas" [value]="hora.hora" class="text-center">{{hora.hora}}
                 </option>
             </select>
@@ -109,5 +109,17 @@
     <!-- </mat-form-field> -->
     <!-- </div> -->
 
-    <button class="btn btn-primary text-white btn-lg  text-uppercase btn-rounded " style="margin-left:35%;" type="submit">Guardar Cita</button>
+    <button class="btn btn-primary text-white btn-lg  text-uppercase btn-rounded " style="margin-left:35%;margin-bottom: 5%;" type="submit">Guardar Cita</button>
 </form>
+<div class="row" *ngIf="citas.length>0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <app-mis-citas  [citas]="citas"></app-mis-citas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+   
+</div>

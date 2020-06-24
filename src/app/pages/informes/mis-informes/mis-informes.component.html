@@ -32,9 +32,7 @@
                     <thead>
                         <tr>
                             <th>Imagen</th>
-
                             <th>Nombre del Paciente</th>
-                            <th>DNI</th>
                             <th>Fecha Informe</th>
                             <th>Ver Informe</th>
 
@@ -48,7 +46,6 @@
                             </td>
                             <td>{{informe.paciente.id.nombre}} {{informe.paciente.id.apellidos}}
                             </td>
-                            <td>{{informe.paciente.id.dni}}</td>
                             <td>{{informe.fechaInforme | date:'dd-MM-yyyy'}}</td>
                             <td>  <button (click)="verInforme(informe)" class="btn btn-primary"><i class="fa fa-book text-white"></i></button></td>
 
@@ -73,4 +70,4 @@
     </div>
 </div>
 <!-- <app-modal-usuario></app-modal-usuario> -->
-<app-modal-informe *ngIf="informe" (notificacion)="cerrarInforme($event)"></app-modal-informe>
+<app-modal-informe *ngIf="informe!=null" (notificacion)="cerrarInforme($event)"></app-modal-informe>
